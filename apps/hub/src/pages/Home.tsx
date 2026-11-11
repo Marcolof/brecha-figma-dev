@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <>
       <section className={s.intro}>
-        <h1 className={s.title}>{project.name}</h1>
+        <h1 className={s.title}>Documentación</h1>
         <p className={s.version}>
-          Versión vigente <strong>{project.version}</strong> · contenido al {formatDate(syncedAt)}
+          Informes completos de la auditoría, planes y handoff · versión <strong>{project.version}</strong> · contenido al {formatDate(syncedAt)}
         </p>
       </section>
 

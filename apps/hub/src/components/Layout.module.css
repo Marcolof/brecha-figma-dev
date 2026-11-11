@@ -13,6 +13,45 @@
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+}
+
+.navLink {
+  padding: 7px 12px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navActive {
+  color: var(--navy);
+  background: var(--yellow);
+}
+
+.navActive:hover {
+  color: var(--navy);
+  background: var(--yellow);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
 }
 
 .brand {

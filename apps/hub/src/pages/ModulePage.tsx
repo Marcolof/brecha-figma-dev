@@ -12,7 +12,7 @@ export default function ModulePage() {
   return (
     <>
       <nav className={s.back}>
-        <Link to="/">← Volver al Hub</Link>
+        <Link to="/documentacion">← Volver a Documentación</Link>
       </nav>
 
       <header className={s.head}>

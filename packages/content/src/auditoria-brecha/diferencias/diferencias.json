@@ -1,0 +1,3824 @@
+{
+  "updated": "2026-11-11",
+  "sides": {
+    "figma": {
+      "label": "Figma",
+      "sublabel": "Design System"
+    },
+    "web": {
+      "label": "Web · MiCorreo",
+      "sublabel": "Producción"
+    },
+    "dev": {
+      "label": "Web · Dev",
+      "sublabel": "/internacional"
+    }
+  },
+  "categories": [
+    {
+      "id": "componentes",
+      "title": "Componentes",
+      "description": "Estados de los componentes (reposo, hover, pressed, focus y disabled) que en producción se ven distinto a lo que define Figma.",
+      "status": "relevado",
+      "note": "Relevado el 2026-11-04 en la landing de MiCorreo (producción) contra el Design System. El 2026-11-11 se sumaron capturas del entorno dev (/internacional) y su comparación con los componentes de Mi Correo 2.0. En dev coinciden con Mi Correo 2.0 el selector Nacional/Internacional y el stepper. El interruptor de fines comerciales está en la versión anterior (ver DEC-03 en Visuales)."
+    },
+    {
+      "id": "visuales",
+      "title": "Visuales",
+      "description": "Diferencias de las pantallas del front: layout, espaciados, tipografía, colores e imágenes.",
+      "status": "relevado",
+      "note": "Auditoría del flujo /internacional (dev) contra Figma Mi Correo 2.0, flujo v1.8: 06/11/2026, reverificada el 10/11/2026. Envío individual, con y sin fines comerciales, hasta «Guardar»."
+    },
+    {
+      "id": "funcionales",
+      "title": "Funcionales",
+      "description": "Comportamientos que difieren: flujos, validaciones, mensajes, navegación y reglas.",
+      "status": "relevado",
+      "note": "Misma auditoría del flujo /internacional (06/11, reverificada el 10/11). No se probaron Masivo, mobile ni lo que viene después de «Guardar»."
+    },
+    {
+      "id": "ambiente",
+      "title": "Ambiente",
+      "description": "Problemas propios de la web dev. No son diferencias con Figma, pero afectan lo que se puede probar o declarar.",
+      "status": "relevado",
+      "note": "Detectados en la misma auditoría del flujo /internacional."
+    }
+  ],
+  "items": [
+    {
+      "id": "boton-primary-disabled",
+      "category": "componentes",
+      "group": "Botón Primary",
+      "title": "Disabled se ve igual que hover",
+      "summary": "En producción el botón deshabilitado queda amarillo al 60 %, igual que el hover: no se distingue.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-disabled.png",
+        "caption": "Buttons v1.0 · Disabled",
+        "highlights": [
+          {
+            "x": 3.8,
+            "y": 9.3,
+            "w": 38.4,
+            "h": 81.5
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura de un botón deshabilitado en producción."
+      },
+      "details": [
+        "Figma define el disabled con fondo gris y texto gris. En producción el botón deshabilitado usa el mismo fondo que el hover y conserva el texto navy.",
+        "La persona no puede saber si el botón está deshabilitado o si sólo tiene el mouse encima. Es un problema de uso y de accesibilidad."
+      ],
+      "values": [
+        {
+          "prop": "Fondo",
+          "figma": "#D9D9D9",
+          "web": "rgba(255, 206, 0, 0.6)",
+          "dev": "#D9D9D9"
+        },
+        {
+          "prop": "Texto",
+          "figma": "#A7A7A7",
+          "web": "#152663",
+          "dev": "#8A8A8A"
+        }
+      ],
+      "decision": "Sin cambios en Figma: el disabled de Figma es el correcto. Lo tiene que corregir desarrollo.",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-boton-disabled.png",
+        "caption": "«Guardar» deshabilitado en el resumen del envío",
+        "highlights": [
+          {
+            "x": 2.4,
+            "y": 2,
+            "w": 95.2,
+            "h": 86
+          }
+        ]
+      },
+      "devNote": "En dev el disabled es gris: ahí no se repite el problema. La diferencia se observó en la landing de producción."
+    },
+    {
+      "id": "boton-primary-focus",
+      "category": "componentes",
+      "group": "Botón Primary",
+      "title": "Focus con sombra en vez de contorno",
+      "summary": "Figma marca el foco de teclado con un contorno; producción usa la sombra de elevación por defecto de MUI.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-focus.png",
+        "caption": "Buttons v1.0 · Focus",
+        "highlights": [
+          {
+            "x": 3.4,
+            "y": 7.4,
+            "w": 38.8,
+            "h": 83.3
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura del foco de teclado en producción."
+      },
+      "details": [
+        "El foco de teclado tiene que verse en cualquier fondo. La sombra de MUI depende del fondo y en muchos casos casi no se nota."
+      ],
+      "values": [
+        {
+          "prop": "Indicador de foco",
+          "figma": "Contorno 2px #FFF0B0",
+          "web": "Sombra de elevación de MUI",
+          "dev": "Contorno por defecto del navegador (#101010)"
+        }
+      ],
+      "decision": "Sin cambios en Figma. Lo tiene que resolver desarrollo.",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-boton-focus.png",
+        "caption": "«Siguiente» con foco de teclado",
+        "highlights": [
+          {
+            "x": 11.6,
+            "y": 11.3,
+            "w": 79.2,
+            "h": 73.6
+          }
+        ]
+      },
+      "devNote": "En dev el foco usa el contorno por defecto del navegador (negro, fino). Se ve, pero tampoco es el de Figma."
+    },
+    {
+      "id": "boton-primary-tamano",
+      "category": "componentes",
+      "group": "Botón Primary",
+      "title": "Alto y padding distintos",
+      "summary": "En producción el botón mide 44 de alto con padding 6/16; Figma define 40 o 48 con padding 20.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-reposo.png",
+        "caption": "Buttons v1.0 · Reposo",
+        "highlights": [
+          {
+            "x": 3.4,
+            "y": 9.3,
+            "w": 39.1,
+            "h": 81.5
+          }
+        ]
+      },
+      "web": {
+        "kind": "capture",
+        "image": "img/web-boton-hover.png",
+        "caption": "«Nuevo envío» en la landing (con el mouse encima)",
+        "highlights": [
+          {
+            "x": 5.8,
+            "y": 16,
+            "w": 41.3,
+            "h": 68
+          }
+        ]
+      },
+      "details": [
+        "El alto de producción (44) no coincide con ninguno de los dos tamaños de Figma (40 y 48). La captura de producción está en hover, pero el tamaño es el mismo que en reposo."
+      ],
+      "values": [
+        {
+          "prop": "Alto",
+          "figma": "40 / 48",
+          "web": "44",
+          "dev": "44"
+        },
+        {
+          "prop": "Padding",
+          "figma": "20",
+          "web": "6 / 16",
+          "dev": "8 / 19,2"
+        },
+        {
+          "prop": "Radio",
+          "figma": "Pill",
+          "web": "24",
+          "dev": "25"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-boton-hover.png",
+        "caption": "«Siguiente» con el mouse encima (el tamaño es el mismo que en reposo)",
+        "highlights": [
+          {
+            "x": 11.6,
+            "y": 11.3,
+            "w": 79.2,
+            "h": 73.6
+          }
+        ]
+      },
+      "devNote": "En dev el alto también es 44, con otro padding y radio 25."
+    },
+    {
+      "id": "boton-primary-hover",
+      "category": "componentes",
+      "group": "Botón Primary",
+      "title": "Hover con fondo transparente",
+      "summary": "Producción vuelve el fondo amarillo al 60 % en lugar de oscurecerlo. Figma ya adoptó este comportamiento.",
+      "severity": "media",
+      "status": "resuelta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-hover.png",
+        "caption": "Buttons v1.0 · Hover (actualizado el 2026-11-04)",
+        "highlights": [
+          {
+            "x": 3.4,
+            "y": 9.3,
+            "w": 39.1,
+            "h": 83.3
+          }
+        ]
+      },
+      "web": {
+        "kind": "capture",
+        "image": "img/web-boton-hover.png",
+        "caption": "«Nuevo envío» con el mouse encima, sobre la foto del hero",
+        "highlights": [
+          {
+            "x": 5.8,
+            "y": 16,
+            "w": 41.3,
+            "h": 68
+          }
+        ]
+      },
+      "details": [
+        "Antes Figma oscurecía el fondo a #E8BB00. Producción usa el amarillo al 60 % de opacidad y deja el borde de 2px al 100 %, que se ve como un anillo.",
+        "Ojo: con opacidad, el color final depende de lo que haya detrás. Sobre la foto oscura del hero se ve amarillo sucio; sobre blanco equivale a #FFE266."
+      ],
+      "values": [
+        {
+          "prop": "Fondo (Figma anterior)",
+          "figma": "#E8BB00",
+          "web": "rgba(255, 206, 0, 0.6)",
+          "dev": "rgba(255, 206, 0, 0.6)"
+        },
+        {
+          "prop": "Borde",
+          "figma": "2px #FFCE00",
+          "web": "2px #FFCE00",
+          "dev": "2px rgba(255, 206, 0, 0.6)"
+        }
+      ],
+      "decision": "2026-11-04: para los estados que Figma no resolvía, manda producción. Figma se actualizó en Buttons v1.0 (49:4524).",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "auditoria-brecha/plan-tokens-buttons-v1.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-boton-hover.png",
+        "caption": "«Siguiente» con el mouse encima",
+        "highlights": [
+          {
+            "x": 11.6,
+            "y": 11.3,
+            "w": 79.2,
+            "h": 73.6
+          }
+        ]
+      },
+      "devNote": "En dev el hover también usa el amarillo al 60 %, pero además baja el borde al 60 % y el texto al 80 %. No es igual a la landing."
+    },
+    {
+      "id": "boton-primary-pressed",
+      "category": "componentes",
+      "group": "Botón Primary",
+      "title": "Pressed con onda (ripple) de MUI",
+      "summary": "Producción suma al hover un círculo azul que se expande desde el clic. Figma lo representa con una capa navy al 30 %.",
+      "severity": "baja",
+      "status": "resuelta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-pressed.png",
+        "caption": "Buttons v1.0 · Pressed (actualizado el 2026-11-04)",
+        "highlights": [
+          {
+            "x": 3.4,
+            "y": 9.3,
+            "w": 39.1,
+            "h": 83.3
+          }
+        ]
+      },
+      "web": {
+        "kind": "capture",
+        "image": "img/web-boton-pressed.png",
+        "caption": "«Nuevo envío» en el momento del clic",
+        "highlights": [
+          {
+            "x": 5.8,
+            "y": 16,
+            "w": 41.3,
+            "h": 68
+          }
+        ]
+      },
+      "details": [
+        "Antes Figma usaba un fondo sólido #B59200. El «más transparente» que se ve en producción es el ripple navy sobre el fondo al 60 %.",
+        "Figma no puede animar el ripple: lo aproxima con una capa #152663 al 30 % sobre el hover."
+      ],
+      "values": [
+        {
+          "prop": "Fondo (Figma anterior)",
+          "figma": "#B59200",
+          "web": "Hover + ripple #152663 ~30 %"
+        },
+        {
+          "prop": "Fondo (Figma actual)",
+          "figma": "Hover + capa #152663 30 %",
+          "web": "Hover + ripple #152663 ~30 %"
+        }
+      ],
+      "decision": "2026-11-04: manda producción. Figma se actualizó.",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ]
+    },
+    {
+      "id": "boton-secondary-borde",
+      "category": "componentes",
+      "group": "Botón Secondary",
+      "title": "Borde de 2px en lugar de 1px",
+      "summary": "«Mis envíos» tiene borde de 2px en producción; Figma tenía 1px y ya se actualizó.",
+      "severity": "baja",
+      "status": "resuelta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-reposo.png",
+        "caption": "Buttons v1.0 · Secondary en reposo (actualizado el 2026-11-04)",
+        "highlights": [
+          {
+            "x": 56.6,
+            "y": 9.3,
+            "w": 38.8,
+            "h": 81.5
+          }
+        ]
+      },
+      "web": {
+        "kind": "capture",
+        "image": "img/web-boton-hover.png",
+        "caption": "«Mis envíos» en reposo, en la landing",
+        "highlights": [
+          {
+            "x": 49.4,
+            "y": 16,
+            "w": 41.9,
+            "h": 68
+          }
+        ]
+      },
+      "details": [
+        "El borde de 2px se aplicó en Figma a todos los estados del Secondary."
+      ],
+      "values": [
+        {
+          "prop": "Borde (Figma anterior)",
+          "figma": "1px #FFCE00",
+          "web": "2px #FFCE00"
+        },
+        {
+          "prop": "Alto",
+          "figma": "40 / 48",
+          "web": "44"
+        }
+      ],
+      "decision": "2026-11-04: manda producción. Figma se actualizó.",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ]
+    },
+    {
+      "id": "boton-secondary-hover",
+      "category": "componentes",
+      "group": "Botón Secondary",
+      "title": "Hover y pressed cambian el color del texto",
+      "summary": "En producción el hover aclara el texto a #6A78A8, un color que no es un token. Figma lo adoptó.",
+      "severity": "media",
+      "status": "resuelta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-hover.png",
+        "caption": "Buttons v1.0 · Secondary en hover (actualizado el 2026-11-04)",
+        "highlights": [
+          {
+            "x": 56.6,
+            "y": 9.3,
+            "w": 38.8,
+            "h": 83.3
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura de «Mis envíos» con el mouse encima."
+      },
+      "details": [
+        "Antes Figma cambiaba el color del borde a #E8BB00. Producción deja el borde igual y cambia el texto.",
+        "#6A78A8 no está en la escala de tokens: el más cercano es secondary-300 (#626E96). En pressed, producción muestra el ripple de MUI."
+      ],
+      "values": [
+        {
+          "prop": "Borde en hover (Figma anterior)",
+          "figma": "#E8BB00",
+          "web": "#FFCE00 (sin cambio)"
+        },
+        {
+          "prop": "Texto en hover",
+          "figma": "#6A78A8",
+          "web": "#6A78A8"
+        },
+        {
+          "prop": "Pressed (Figma anterior)",
+          "figma": "Borde #B59200",
+          "web": "Ripple de MUI"
+        }
+      ],
+      "decision": "2026-11-04: manda producción. Queda pendiente decidir si #6A78A8 pasa a ser un token.",
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ]
+    },
+    {
+      "id": "header-botones-hover",
+      "category": "componentes",
+      "group": "Header",
+      "title": "Botones del header sin hover",
+      "summary": "«Nuevo envío», «Mi cuenta» y el menú no cambian al pasar el mouse. El Navbar de Mi Correo 2.0 tampoco define hover.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-navbar.png",
+        "caption": "Navbar desktop · V1 PROD (2321:32930): no tiene variante de hover",
+        "highlights": [
+          {
+            "x": 9.9,
+            "y": 16.7,
+            "w": 29.6,
+            "h": 66.7
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · global"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura del header de producción."
+      },
+      "details": [
+        "En el CSS de producción hay una regla de hover con #E6BC00, pero otra posterior la pisa con transparent: el hover no se ve.",
+        "El Design System no tiene botones de header. El Navbar existe en Mi Correo 2.0 (componentes globales), pero sin variante de hover: hay que definirla."
+      ],
+      "values": [
+        {
+          "prop": "Hover",
+          "figma": "No definido (Navbar sin variante hover)",
+          "web": "Ninguno (transparent)",
+          "dev": "Ninguno"
+        },
+        {
+          "prop": "Forma",
+          "figma": "Navbar Mi Correo 2.0",
+          "web": "Radio 8, alto 42, texto #191919",
+          "dev": "Radio 8, alto 42, texto #191919"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-header-hover.png",
+        "caption": "Mouse sobre «Nuevo envío»: el header no cambia",
+        "highlights": [
+          {
+            "x": 3.8,
+            "y": 18,
+            "w": 26.4,
+            "h": 62
+          },
+          {
+            "x": 42.4,
+            "y": 40,
+            "w": 17.6,
+            "h": 40
+          }
+        ]
+      },
+      "devNote": "En dev se confirma: ni «Nuevo envío», ni «Mi cuenta», ni el menú cambian con el mouse encima."
+    },
+    {
+      "id": "input-focus",
+      "category": "componentes",
+      "group": "Input",
+      "title": "El foco del input no se ve",
+      "summary": "Al hacer foco en «Gestionar devolución», el borde queda gris claro en lugar del azul que define Figma.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-input-focus.png",
+        "caption": "Text Fields · Focus",
+        "highlights": [
+          {
+            "x": 4.3,
+            "y": 8.9,
+            "w": 91.4,
+            "h": 82.2
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura del input con foco en producción."
+      },
+      "details": [
+        "Existe una clase specialOutlined con el azul #2196F3, pero este input no la usa.",
+        "Sin foco visible, quien navega con teclado no sabe dónde está parado."
+      ],
+      "values": [
+        {
+          "prop": "Borde en focus",
+          "figma": "1px #2196F3",
+          "web": "1px #E0E0E0",
+          "dev": "1px #2196F3"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-select-focus.png",
+        "caption": "Select «País de destino» con foco de teclado",
+        "highlights": [
+          {
+            "x": 2.4,
+            "y": 12.4,
+            "w": 95.3,
+            "h": 68.1
+          }
+        ]
+      },
+      "devNote": "En dev el foco sí se ve: borde #2196F3 y etiqueta flotante, como en Figma. El problema queda en la landing."
+    },
+    {
+      "id": "input-hover",
+      "category": "componentes",
+      "group": "Input",
+      "title": "Hover casi invisible",
+      "summary": "Figma no define el hover del input; en producción el borde pasa a un gris más claro que el de reposo.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "missing",
+        "caption": "Text Fields no tiene estado hover."
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura del input con el mouse encima."
+      },
+      "details": [
+        "Producción aclara el borde de #D9D9D9 a #E0E0E0: el cambio casi no se percibe y va en sentido contrario al esperado."
+      ],
+      "values": [
+        {
+          "prop": "Borde en hover",
+          "figma": "No definido",
+          "web": "#E0E0E0",
+          "dev": "Sin cambio (#CCCCCC)"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "design-system-handoff/INCONSISTENCIAS.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-select-hover.png",
+        "caption": "Select «País de destino» con el mouse encima: no cambia",
+        "highlights": [
+          {
+            "x": 2.4,
+            "y": 19.5,
+            "w": 95.3,
+            "h": 61.1
+          }
+        ]
+      },
+      "devNote": "En dev el hover no cambia nada: el borde queda en #CCCCCC."
+    },
+    {
+      "id": "input-radio",
+      "category": "componentes",
+      "group": "Input",
+      "title": "Radio de borde 8 en lugar de 4",
+      "summary": "El input de producción tiene las esquinas más redondeadas que el de Figma.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-input-reposo.png",
+        "caption": "Text Fields · Reposo",
+        "highlights": [
+          {
+            "x": 4.3,
+            "y": 9.1,
+            "w": 91.4,
+            "h": 81.8
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura del input en reposo en producción."
+      },
+      "details": [
+        "Además, el radio 4 de Figma no existe en la colección Radius, cuyo mínimo es 8."
+      ],
+      "values": [
+        {
+          "prop": "Radio",
+          "figma": "4",
+          "web": "8",
+          "dev": "5"
+        },
+        {
+          "prop": "Borde",
+          "figma": "#D9D9D9",
+          "web": "#D9D9D9",
+          "dev": "#CCCCCC"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "design-system-handoff/INCONSISTENCIAS.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-select-reposo.png",
+        "caption": "Select «País de destino» en reposo",
+        "highlights": [
+          {
+            "x": 2.4,
+            "y": 19.5,
+            "w": 95.3,
+            "h": 61.1
+          }
+        ]
+      },
+      "devNote": "En dev hay un tercer valor: radio 5 y borde #CCCCCC. No coincide ni con Figma ni con la landing."
+    },
+    {
+      "id": "input-error",
+      "category": "componentes",
+      "group": "Input",
+      "title": "Rojo de error distinto",
+      "summary": "Producción usa el rojo por defecto de MUI en lugar del rojo de Figma.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-input-error.png",
+        "caption": "Text Fields · Error",
+        "highlights": [
+          {
+            "x": 4.3,
+            "y": 9.1,
+            "w": 91.4,
+            "h": 81.8
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura de un input con error en producción."
+      },
+      "details": [
+        "El rojo de Figma (#F03131) tampoco llega al contraste mínimo para texto de 14 px (4,05:1). error-600 (#DA2D2D) sí cumple."
+      ],
+      "values": [
+        {
+          "prop": "Color de error",
+          "figma": "#F03131",
+          "web": "#D32F2F",
+          "dev": "#ED143D"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "design-system-handoff/INCONSISTENCIAS.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-select-error.png",
+        "caption": "Select «Categoría de envío» al tocar «Siguiente» sin completarlo",
+        "highlights": [
+          {
+            "x": 2.4,
+            "y": 19.5,
+            "w": 95.3,
+            "h": 61.1
+          }
+        ]
+      },
+      "devNote": "En dev aparece un tercer rojo: #ED143D. No se muestra mensaje de error debajo del campo."
+    },
+    {
+      "id": "input-disabled",
+      "category": "componentes",
+      "group": "Input",
+      "title": "Disabled con fondo gris",
+      "summary": "Figma marca el disabled sólo con texto gris; producción le pone fondo gris.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-input-disabled.png",
+        "caption": "Text Fields · Disabled",
+        "highlights": [
+          {
+            "x": 4.3,
+            "y": 9.0,
+            "w": 91.4,
+            "h": 82.0
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura de un input deshabilitado en producción."
+      },
+      "details": [
+        "Son dos formas distintas de indicar el mismo estado. Hay que elegir una."
+      ],
+      "values": [
+        {
+          "prop": "Disabled",
+          "figma": "Texto #A7A7A7",
+          "web": "Fondo #EEEEEE"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ]
+    },
+    {
+      "id": "link-hover",
+      "category": "componentes",
+      "group": "Link",
+      "title": "Link sin estados en Figma",
+      "summary": "El Tertiary (link) de Figma no cambia en ningún estado; en producción el hover sólo cambia el color del subrayado.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/figma-boton-hover-con-link.png",
+        "caption": "Buttons v1.0 · Tertiary en hover (igual que en reposo)",
+        "highlights": [
+          {
+            "x": 85.2,
+            "y": 33.3,
+            "w": 10.4,
+            "h": 40.7
+          }
+        ]
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Falta la captura de un link (por ejemplo, «Cerrar sesión») con el mouse encima."
+      },
+      "details": [
+        "Ni siquiera el disabled del link se distingue en Figma. Hay que completar la matriz de estados."
+      ],
+      "values": [
+        {
+          "prop": "Hover",
+          "figma": "Sin cambio",
+          "web": "Cambia el color del subrayado",
+          "dev": "Sin cambio (#2562EA, sin subrayado)"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "design-system-handoff/INCONSISTENCIAS.md"
+      ],
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-link-hover.png",
+        "caption": "«Información a tener en cuenta» con el mouse encima: no cambia",
+        "highlights": [
+          {
+            "x": 4.5,
+            "y": 17.7,
+            "w": 84.4,
+            "h": 64.5
+          }
+        ]
+      },
+      "devNote": "En dev el link no cambia en hover: queda #2562EA y sin subrayado."
+    },
+    {
+      "id": "theme-paleta-invertida",
+      "category": "componentes",
+      "group": "Theme",
+      "title": "La paleta del código está invertida",
+      "summary": "En el código de producción el amarillo es secondary; en Figma y en el theme.ts del paquete, el amarillo es primary.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "code",
+        "caption": "Figma y theme.ts del paquete",
+        "code": "Primary   = amarillo #FFCE00\nSecondary = navy #152663"
+      },
+      "web": {
+        "kind": "code",
+        "caption": "Clase del botón amarillo en producción",
+        "code": "MuiButton-containedSecondary\n→ en el theme de los DEVs,\n  el amarillo es secondary"
+      },
+      "details": [
+        "No es una diferencia visible: es de estructura. Si se adopta themeWeb sin alinear esto, el código que hoy usa color=\"secondary\" va a cambiar de color.",
+        "Hay que acordarlo con desarrollo antes de adoptar el theme."
+      ],
+      "values": [
+        {
+          "prop": "Botón amarillo",
+          "figma": "primary",
+          "web": "secondary"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/estados-interactivos-micorreo.md"
+      ]
+    },
+    {
+      "id": "mc2-articulo-borde",
+      "category": "componentes",
+      "group": "Artículo · Mi Correo 2.0",
+      "title": "Radio y borde distintos",
+      "summary": "«Agregar artículo» tiene radio 6 y borde #CCCCCC en dev; Mi Correo 2.0 define radio 8 y borde #D9D9D9.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-articulo-reposo.png",
+        "caption": "Artículo · status=empty, interacción=default (5524:29785)",
+        "highlights": [
+          {
+            "x": 1.3,
+            "y": 10.3,
+            "w": 97.4,
+            "h": 79.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-articulo-reposo.png",
+        "caption": "«Agregar artículo» en reposo, con país y categoría elegidos",
+        "highlights": [
+          {
+            "x": 2.5,
+            "y": 17.6,
+            "w": 95.1,
+            "h": 77.8
+          }
+        ]
+      },
+      "devNote": "El borde #CCCCCC y el radio 6 se repiten en el disabled y en el select de dev: es un valor propio de esta implementación, no un token.",
+      "details": [
+        "Es un componente exclusivo de Mi Correo 2.0 (componentes locales del flujo internacional)."
+      ],
+      "values": [
+        {
+          "prop": "Radio",
+          "figma": "8 (radius-sm)",
+          "web": "—",
+          "dev": "6"
+        },
+        {
+          "prop": "Borde",
+          "figma": "#D9D9D9 (input-stroke-default)",
+          "web": "—",
+          "dev": "#CCCCCC"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/diferencias/README.md"
+      ]
+    },
+    {
+      "id": "mc2-articulo-hover",
+      "category": "componentes",
+      "group": "Artículo · Mi Correo 2.0",
+      "title": "Hover con borde navy",
+      "summary": "En hover, dev pinta el borde de navy; Mi Correo 2.0 lo define gris (#A7A7A7). El fondo #F2F2F2 coincide.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-articulo-hover.png",
+        "caption": "Artículo · interacción=hover (15300:30205)",
+        "highlights": [
+          {
+            "x": 1.3,
+            "y": 10.3,
+            "w": 97.4,
+            "h": 79.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-articulo-hover.png",
+        "caption": "«Agregar artículo» con el mouse encima",
+        "highlights": [
+          {
+            "x": 2.5,
+            "y": 17.6,
+            "w": 95.1,
+            "h": 77.8
+          }
+        ]
+      },
+      "devNote": "Colores medidos sobre la captura: el estilo de hover no está en el botón sino en otro elemento.",
+      "details": [
+        "El fondo de hover coincide con el token color-background-hover. Cambia sólo el borde."
+      ],
+      "values": [
+        {
+          "prop": "Fondo",
+          "figma": "#F2F2F2 (color-background-hover)",
+          "web": "—",
+          "dev": "#F2F2F2"
+        },
+        {
+          "prop": "Borde",
+          "figma": "#A7A7A7 (color-stroke-hover)",
+          "web": "—",
+          "dev": "#152663"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/diferencias/README.md"
+      ]
+    },
+    {
+      "id": "mc2-articulo-focus",
+      "category": "componentes",
+      "group": "Artículo · Mi Correo 2.0",
+      "title": "Focus con contorno del navegador",
+      "summary": "Mi Correo 2.0 marca el foco con fondo navy al 10 %; dev deja el fondo blanco y muestra el contorno por defecto del navegador.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-articulo-focus.png",
+        "caption": "Artículo · interacción=focus (15300:30208)",
+        "highlights": [
+          {
+            "x": 1.3,
+            "y": 10.3,
+            "w": 97.4,
+            "h": 79.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-articulo-focus.png",
+        "caption": "«Agregar artículo» con foco de teclado (Tab)",
+        "highlights": [
+          {
+            "x": 2.5,
+            "y": 17.6,
+            "w": 95.1,
+            "h": 77.8
+          }
+        ]
+      },
+      "details": [
+        "Es el mismo patrón que el botón «Siguiente»: dev no implementa el foco diseñado y queda el del navegador."
+      ],
+      "values": [
+        {
+          "prop": "Fondo en focus",
+          "figma": "#00229D1A (color-background-focus)",
+          "web": "—",
+          "dev": "#FFFFFF"
+        },
+        {
+          "prop": "Indicador",
+          "figma": "Fondo",
+          "web": "—",
+          "dev": "Contorno del navegador (#101010)"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/diferencias/README.md"
+      ]
+    },
+    {
+      "id": "mc2-checkbox",
+      "category": "componentes",
+      "group": "Declaración jurada · Mi Correo 2.0",
+      "title": "Checkbox con otro fondo y borde",
+      "summary": "El checkbox de la declaración jurada usa fondo blanco y borde #CCCCCC en dev; Mi Correo 2.0 define #FAFAFA y #D9D9D9.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-declaracion.png",
+        "caption": "Declaración jurada · check=false, fines comerciales=true (10933:13834)",
+        "highlights": [
+          {
+            "x": 1.1,
+            "y": 10.0,
+            "w": 4.2,
+            "h": 37.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-declaracion.png",
+        "caption": "Checkbox de la declaración jurada en /internacional",
+        "highlights": [
+          {
+            "x": 1.1,
+            "y": 8.8,
+            "w": 3.7,
+            "h": 21.4
+          }
+        ]
+      },
+      "details": [
+        "Diferencia chica, pero repite el gris #CCCCCC que dev usa en lugar del token de borde."
+      ],
+      "values": [
+        {
+          "prop": "Fondo",
+          "figma": "#FAFAFA (checkBox-background-default)",
+          "web": "—",
+          "dev": "#FFFFFF"
+        },
+        {
+          "prop": "Borde",
+          "figma": "#D9D9D9 (checkBox-stroke-default)",
+          "web": "—",
+          "dev": "#CCCCCC"
+        }
+      ],
+      "sources": [
+        "auditoria-brecha/diferencias/README.md"
+      ]
+    },
+    {
+      "id": "amb-01",
+      "code": "AMB-01",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "La rueda del mouse cambia los valores numéricos",
+      "summary": "Con el foco en peso o precio, una vuelta de la rueda baja el valor un paso (0.3 → 0.29) sin que el usuario lo note.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-01-dev.jpg",
+        "caption": "Captura dev-28 de la auditoría",
+        "highlights": [
+          {
+            "x": 20.5,
+            "y": 36.7,
+            "w": 59.1,
+            "h": 27.2
+          }
+        ]
+      },
+      "details": [
+        "Con el foco en «Peso unitario (Kg)», una vuelta de la rueda baja el valor un paso (0.01): 0.3 pasa a 0.29, y se arrastra al artículo y a los totales. Pasa al desplazar el modal sin sacar el foco del campo. Afecta a precio y peso (campos type=number)."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-02",
+      "code": "AMB-02",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "El mapa de Origen no carga",
+      "summary": "OpenStreetMap bloquea los mosaicos del mapa.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-02-dev.jpg",
+        "caption": "Captura dev-15 de la auditoría",
+        "highlights": [
+          {
+            "x": 21.3,
+            "y": 14.9,
+            "w": 57.5,
+            "h": 70.4
+          }
+        ]
+      },
+      "details": [
+        "OpenStreetMap bloquea los mosaicos («Access blocked … tile usage policy»)."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-03",
+      "code": "AMB-03",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "Destino y el Resumen tienen datos de ejemplo",
+      "summary": "Destinatario, dirección, origen y resumen vienen precargados con datos de prueba.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-03-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría",
+        "highlights": [
+          {
+            "x": 10.7,
+            "y": 21.1,
+            "w": 64.3,
+            "h": 57.9
+          }
+        ]
+      },
+      "details": [
+        "Destinatario, dirección, origen y resumen vienen precargados (por ejemplo, «Logística ecuatorial»). El Resumen › Origen no refleja la sucursal elegida. Esos contenidos no se auditaron."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-04",
+      "code": "AMB-04",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "La pestaña «Nacional» sale del ambiente",
+      "summary": "Lleva a otro dominio, el del flujo nacional anterior.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "pending",
+        "caption": "No hay captura de este problema."
+      },
+      "details": [
+        "Lleva a otro dominio, el del flujo nacional anterior. Por eso no se pudo probar el ida y vuelta Nacional → Internacional de DEC-01."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-05",
+      "code": "AMB-05",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "VUCE devuelve «METRO CUADRADO» para remeras",
+      "summary": "Es la unidad de medida que devuelve el servicio para «T-shirts y camisetas».",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-05-dev.jpg",
+        "caption": "Captura dev-09 de la auditoría",
+        "highlights": [
+          {
+            "x": 19.0,
+            "y": 41.1,
+            "w": 62.2,
+            "h": 18.3
+          }
+        ]
+      },
+      "details": [
+        "Es la unidad de medida que devuelve para «T-shirts y camisetas» (Figma muestra lo mismo en su ejemplo). Conviene confirmarlo con el servicio."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-06",
+      "code": "AMB-06",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "«Guardar» se habilita con datos obligatorios vacíos",
+      "summary": "En Destino queda habilitado aunque Provincia, Ciudad y Código postal estén vacíos.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-06-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 40.0,
+            "w": 74.7,
+            "h": 20.4
+          }
+        ]
+      },
+      "details": [
+        "Figma no muestra el estado deshabilitado, pero el AFU (HU-12) los da como obligatorios: hay que verificar si «Guardar» valida al presionarlo (no se presionó)."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "amb-07",
+      "code": "AMB-07",
+      "category": "ambiente",
+      "group": "Problemas de la web dev",
+      "title": "Las listas desplegables no se vieron abiertas",
+      "summary": "Las opciones existen y se pueden elegir con el teclado, pero no aparecieron en las capturas.",
+      "status": "abierta",
+      "figma": {
+        "kind": "na",
+        "caption": "No es una diferencia con Figma: es un problema del ambiente.",
+        "sublabel": ""
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "No aplica a la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/amb-07-dev.jpg",
+        "caption": "Captura dev-05 de la auditoría",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 39.0,
+            "w": 63.7,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Revisarlo a mano: puede ser sólo un efecto de la captura."
+      ],
+      "values": [],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-01",
+      "code": "DEC-01",
+      "category": "funcionales",
+      "group": "Declaración",
+      "title": "El modal «Información a tener en cuenta» no se abre al entrar",
+      "summary": "En Figma el modal se abre solo al elegir Internacional; en dev la pantalla carga sin el modal.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14469:65168)",
+        "highlights": [
+          {
+            "x": 28.0,
+            "y": 32.0,
+            "w": 44.0,
+            "h": 36.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-01-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 5.0,
+            "y": 42.0,
+            "w": 16.0,
+            "h": 5.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada.",
+        "No se pudo probar el ida y vuelta Nacional → Internacional, porque la pestaña «Nacional» sale del ambiente (AMB-04)."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Se abre solo al elegir Internacional; el enlace lo vuelve a abrir.",
+          "web": "—",
+          "dev": "La pantalla carga sin el modal; sólo se abre desde el enlace «Información a tener en cuenta»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-02",
+      "code": "DEC-02",
+      "category": "funcionales",
+      "group": "Declaración",
+      "title": "El modal comercial no se abre al activar «Envío con fines comerciales»",
+      "summary": "En Figma, activar el interruptor abre el modal con las condiciones comerciales; en dev no aparece ningún modal.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14459:53985)",
+        "highlights": [
+          {
+            "x": 28.0,
+            "y": 19.0,
+            "w": 42.0,
+            "h": 62.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-02-dev.jpg",
+        "caption": "Captura dev-02 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 5.0,
+            "y": 37.0,
+            "w": 37.0,
+            "h": 5.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Se abre solo el modal con las condiciones comerciales (AFU HU-03).",
+          "web": "—",
+          "dev": "Se activa el interruptor y la categoría pasa a «Venta de mercadería», pero no aparece ningún modal."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "art-01",
+      "code": "ART-01",
+      "category": "funcionales",
+      "group": "Modal «Agregar artículo»",
+      "title": "El modal es el anterior, de un solo paso",
+      "summary": "Figma define dos pasos (clasificación arancelaria con VUCE y datos del artículo); dev tiene un solo formulario con «Limpiar».",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/art-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14908:4082)",
+        "highlights": [
+          {
+            "x": 8.0,
+            "y": 36.8,
+            "w": 84.0,
+            "h": 27.2
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/art-01-dev.jpg",
+        "caption": "Captura dev-06 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 32.0,
+            "y": 10.0,
+            "w": 37.0,
+            "h": 82.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Dos pasos: (1) clasificación arancelaria con sugerencias de VUCE y niveles; (2) datos del artículo, con «Atrás» y «Agregar». Sin «Limpiar». El aviso está en el tooltip del ícono ⓘ.",
+          "web": "—",
+          "dev": "Descripción, código, cantidad, precio y peso en un mismo formulario. Botones «Cancelar», «Limpiar» y «Agregar». El aviso de responsabilidad está en un recuadro gris siempre visible."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "art-02",
+      "code": "ART-02",
+      "category": "funcionales",
+      "group": "Modal «Agregar artículo»",
+      "title": "No se puede llegar a la posición arancelaria final",
+      "summary": "En dev el código queda en 4 dígitos (61.09); Figma baja por niveles hasta la posición final de 11 dígitos más letra.",
+      "severity": "alta",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/art-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14908:4082)",
+        "highlights": [
+          {
+            "x": 8.0,
+            "y": 12.5,
+            "w": 84.0,
+            "h": 75.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/art-02-dev.jpg",
+        "caption": "Captura dev-08 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.0,
+            "y": 38.8,
+            "w": 62.2,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "La sugerencia abre los niveles, de a uno; «Volver» sube un nivel. La posición final (11 dígitos + letra) se elige con un radio. «Siguiente» se habilita sólo con una posición final.",
+          "web": "—",
+          "dev": "Al elegir una sugerencia, el código queda en 4 dígitos (61.09) y no hay forma de bajar a una posición más precisa."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "art-03",
+      "code": "ART-03",
+      "category": "funcionales",
+      "group": "Modal «Agregar artículo»",
+      "title": "La descripción del usuario se reemplaza por la de VUCE",
+      "summary": "Lo que escribió el usuario («Remera») se reemplaza por el texto de VUCE en la tarjeta del artículo.",
+      "severity": "media",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/art-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15088)",
+        "highlights": [
+          {
+            "x": 18.4,
+            "y": 42.1,
+            "w": 47.4,
+            "h": 15.9
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/art-03-dev.jpg",
+        "caption": "Captura dev-10 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 14.6,
+            "y": 41.4,
+            "w": 58.4,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: a confirmar.",
+        "Es la duda D-01 de la definición funcional: qué descripción se guarda."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "La tarjeta muestra la descripción del usuario («Remera de algodón»), separada de la posición.",
+          "web": "—",
+          "dev": "La tarjeta muestra el texto de VUCE («\"T-SHIRTS\" Y CAMISETAS, DE PUNTO.»)."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "art-04",
+      "code": "ART-04",
+      "category": "funcionales",
+      "group": "Modal «Agregar artículo»",
+      "title": "«Agregar» está siempre habilitado",
+      "summary": "En dev «Agregar» se puede tocar con campos vacíos; en Figma «Siguiente» se habilita sólo con una posición final.",
+      "severity": "baja",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/art-04-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14908:4082)",
+        "highlights": [],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/art-04-dev.jpg",
+        "caption": "Captura dev-06 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 38.2,
+            "y": 38.7,
+            "w": 23.7,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: a confirmar."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "En el paso 1, «Siguiente» se habilita sólo con una posición final. No se ve el estado de error del paso 2.",
+          "web": "—",
+          "dev": "Con campos vacíos marca los campos en rojo y muestra «Completá todos los campos obligatorios…»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "paq-01",
+      "code": "PAQ-01",
+      "category": "funcionales",
+      "group": "Paquete",
+      "title": "El peso aforado repite el peso real",
+      "summary": "Dev muestra como aforado el mismo peso ingresado; el AFU lo calcula con largo × ancho × alto / 6000.",
+      "severity": "media",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/paq-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 12.3,
+            "y": 41.2,
+            "w": 65.0,
+            "h": 18.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/paq-01-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.7,
+            "y": 41.2,
+            "w": 64.3,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: a confirmar.",
+        "Falta confirmar si el aforado aplica a Encomienda o sólo a EMS Mercadería (P6)."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Aforado = largo × ancho × alto / 6000 (AFU §3): para 45 × 35 × 25 cm da 6,56 kg. El ejemplo de Figma también lo calcula.",
+          "web": "—",
+          "dev": "«Peso Total Aforado» muestra el peso ingresado (1 kg y 2 kg con 45 × 35 × 25 cm)."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "ori-02",
+      "code": "ORI-02",
+      "category": "funcionales",
+      "group": "Origen",
+      "title": "Con fines comerciales aparecen las casillas para recordar remitente y sucursal",
+      "summary": "Dev muestra «Utilizar este remitente / esta sucursal para próximos envíos» también en el flujo comercial; Figma no las tiene ahí.",
+      "severity": "media",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/ori-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:16283)",
+        "highlights": [
+          {
+            "x": 14.9,
+            "y": 21.3,
+            "w": 57.4,
+            "h": 11.8
+          },
+          {
+            "x": 14.9,
+            "y": 67.3,
+            "w": 57.4,
+            "h": 11.8
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/ori-02-dev.jpg",
+        "caption": "Captura dev-25 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 13.6,
+            "y": 17.5,
+            "w": 54.6,
+            "h": 13.1
+          },
+          {
+            "x": 13.6,
+            "y": 69.7,
+            "w": 54.6,
+            "h": 13.1
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: a confirmar."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "La pantalla comercial no tiene esas casillas. El AFU (HU-10) permite guardar remitente y sucursal sin distinguir el flujo.",
+          "web": "—",
+          "dev": "«Utilizar este remitente para próximos envíos internacionales» y «Utilizar esta sucursal…», igual que sin fines."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-01",
+      "code": "DES-01",
+      "category": "funcionales",
+      "group": "Destino",
+      "title": "El código postal no tiene ayuda ni formato según el país",
+      "summary": "Figma muestra «ZIP Code · Ej.: 33101» con formato según el país; dev, un campo sin ayuda.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 25.4,
+            "y": 36.6,
+            "w": 49.4,
+            "h": 27.2
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-01-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 27.7,
+            "y": 39.0,
+            "w": 44.7,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada.",
+        "La validación del formato no se probó."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«ZIP Code · Ej.: 33101», con formato según el país (AFU HU-12 y P7).",
+          "web": "—",
+          "dev": "Campo sin ayuda."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-02",
+      "code": "DES-02",
+      "category": "funcionales",
+      "group": "Destino",
+      "title": "Hay un campo «N.º de orden (opcional)» que no está en Figma",
+      "summary": "Dev agrega el campo en Destinatario; no existe ni en Figma ni en el AFU.",
+      "severity": "baja",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 10.8,
+            "y": 41.1,
+            "w": 69.3,
+            "h": 18.2
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-02-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 38.2,
+            "y": 42.2,
+            "w": 23.7,
+            "h": 15.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: a confirmar.",
+        "Puede ser un pedido de negocio que no llegó a Figma."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "No existe ni en Figma ni en el AFU.",
+          "web": "—",
+          "dev": "El campo aparece en Destinatario."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-03",
+      "code": "DES-03",
+      "category": "funcionales",
+      "group": "Destino",
+      "title": "El código de teléfono arranca en Argentina y no en el país de destino",
+      "summary": "Con destino Chile, dev arranca en +54; Figma lo precarga según el país.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 16.7,
+            "y": 41.2,
+            "w": 52.4,
+            "h": 18.2
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-03-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 15.6,
+            "y": 39.1,
+            "w": 48.1,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Precargado según el país; editable» (AFU HU-11). En Figma arranca con +593 (Ecuador).",
+          "web": "—",
+          "dev": "Arranca en +54 con destino Chile."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-04",
+      "code": "DES-04",
+      "category": "funcionales",
+      "group": "Destino",
+      "title": "El servicio preseleccionado no corresponde al producto elegido",
+      "summary": "Sin fines, con «Encomienda» elegido, dev ofrece y preselecciona sólo «EMS Documentación».",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-04-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 10.8,
+            "y": 33.6,
+            "w": 69.3,
+            "h": 33.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-04-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.7,
+            "y": 31.0,
+            "w": 64.3,
+            "h": 38.4
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada.",
+        "El ejemplo de Figma también muestra EMS Documentación: el error está en la regla y no en el diseño."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "El producto define el servicio preseleccionado: Encomienda → Encomienda Internacional (AFU HU-09 y HU-13).",
+          "web": "—",
+          "dev": "Sin fines comerciales, con «Encomienda» elegido en Paquete, se ofrece y preselecciona sólo «EMS Documentación». Con fines comerciales sí preselecciona «Encomienda Internacional»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-01",
+      "code": "RES-01",
+      "category": "funcionales",
+      "group": "Resumen",
+      "title": "El Resumen no se completa al avanzar de paso",
+      "summary": "En Paquete y Origen dev sólo muestra la Declaración abierta; Figma suma y abre cada paso.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 21.4,
+            "y": 26.9,
+            "w": 72.2,
+            "h": 46.7
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-01-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 38.9,
+            "w": 74.7,
+            "h": 22.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Cada paso suma lo cargado y abre su sección (AFU §3).",
+          "web": "—",
+          "dev": "En Paquete y en Origen sólo se ve la Declaración abierta. Paquete y Origen aparecen recién en Destino."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-02",
+      "code": "RES-02",
+      "category": "funcionales",
+      "group": "Resumen",
+      "title": "Al Resumen le falta el peso aforado",
+      "summary": "Dev muestra «Medidas» y «Peso»; Figma también «Peso aforado».",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 43.4,
+            "w": 73.0,
+            "h": 13.6
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-02-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 33.5,
+            "w": 74.7,
+            "h": 33.3
+          }
+        ]
+      },
+      "details": [
+        "Tipo: funcional. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "También muestra «Peso aforado».",
+          "web": "—",
+          "dev": "Paquete muestra «Medidas» y «Peso»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "gen-01",
+      "category": "visuales",
+      "group": "General",
+      "title": "El menú de usuario dice «Mi cuenta»",
+      "summary": "El Navbar de Mi Correo 2.0 (V1 PROD y v2) dice «Ver más» con chevron hacia arriba; dev dice «Mi cuenta» con chevron hacia abajo.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-navbar.png",
+        "caption": "Navbar desktop · V1 PROD, logueado (2321:32930)",
+        "highlights": [
+          {
+            "x": 55.8,
+            "y": 51,
+            "w": 17.6,
+            "h": 36
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · global"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-header-reposo.png",
+        "caption": "Header de /internacional, logueado con un usuario de prueba",
+        "highlights": [
+          {
+            "x": 42.6,
+            "y": 43.2,
+            "w": 17.0,
+            "h": 36.8
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "El nombre de la persona es de ejemplo en los dos lados."
+      ],
+      "values": [
+        {
+          "prop": "Texto del menú",
+          "figma": "Ver más",
+          "web": "—",
+          "dev": "Mi cuenta"
+        },
+        {
+          "prop": "Chevron (cerrado)",
+          "figma": "Hacia arriba",
+          "web": "—",
+          "dev": "Hacia abajo"
+        }
+      ],
+      "sources": [],
+      "code": "GEN-01",
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md)."
+    },
+    {
+      "id": "gen-02",
+      "code": "GEN-02",
+      "category": "visuales",
+      "group": "General",
+      "title": "Los campos son más bajos",
+      "summary": "En dev los campos miden 38 px de alto; en Figma, 42 px.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/gen-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 38.8,
+            "w": 68.8,
+            "h": 22.8
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/gen-02-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 40.9,
+            "w": 63.7,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "42 px de alto.",
+          "web": "—",
+          "dev": "38 px de alto. La columna del formulario sí mide 600 px, como en Figma."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-03",
+      "code": "DEC-03",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "El interruptor de fines comerciales está en la versión anterior",
+      "summary": "Dev muestra la versión 1 (leyenda e interruptor a la derecha); Figma ya usa la versión 2 (interruptor a la izquierda con «No»/«Sí»).",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 16.7,
+            "y": 34.9,
+            "w": 52.4,
+            "h": 30.4
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-03-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.7,
+            "y": 36.7,
+            "w": 64.3,
+            "h": 27.3
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Versión 2: etiqueta en 16 px Medium; abajo, el interruptor a la izquierda con «No»/«Sí». Sin leyenda.",
+          "web": "—",
+          "dev": "Leyenda «Solo disponible desde sucursales con asiento aduanero.» e interruptor a la derecha; etiqueta en 14 px."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-04",
+      "code": "DEC-04",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "Con fines comerciales sigue visible «Detallá la categoría…»",
+      "summary": "Dev muestra el texto «Detallá la categoría del envío y el contenido del paquete.», que no está en la Declaración comercial de Figma.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-04-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15835)",
+        "highlights": [
+          {
+            "x": 10.8,
+            "y": 44.5,
+            "w": 69.3,
+            "h": 11.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-04-dev.jpg",
+        "caption": "Captura dev-26 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 14.0,
+            "y": 43.3,
+            "w": 53.5,
+            "h": 13.6
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Ese texto no aparece en la Declaración comercial.",
+          "web": "—",
+          "dev": "Se ve «Detallá la categoría del envío y el contenido del paquete.»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-05",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "La leyenda de la declaración (DESP) tiene un párrafo de más",
+      "summary": "Dev agrega «Correo Argentino no es responsable de su exactitud o veracidad.», que no está en Mi Correo 2.0.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-declaracion.png",
+        "caption": "Declaración jurada · Mi Correo 2.0 (10933:13834)",
+        "highlights": [
+          {
+            "x": 5.5,
+            "y": 4.3,
+            "w": 92.8,
+            "h": 84.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-declaracion.png",
+        "caption": "Texto de la declaración jurada en /internacional",
+        "highlights": [
+          {
+            "x": 5.7,
+            "y": 71.1,
+            "w": 69.1,
+            "h": 23.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "AFU HU-08: la frase se quitó y sigue abierta la consulta D7 sobre si va todo el descargo."
+      ],
+      "values": [
+        {
+          "prop": "Párrafos",
+          "figma": "1",
+          "web": "—",
+          "dev": "2 (agrega descargo de responsabilidad)"
+        }
+      ],
+      "sources": [],
+      "code": "DEC-05",
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md)."
+    },
+    {
+      "id": "dec-06",
+      "code": "DEC-06",
+      "category": "visuales",
+      "group": "General",
+      "title": "El título «Nuevo envío | Paquetería» es más grande",
+      "summary": "Dev usa 28 px SemiBold; Figma, 24 px Medium.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-06-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 15.1,
+            "y": 29.6,
+            "w": 53.5,
+            "h": 22.8
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-06-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 14.3,
+            "y": 38.8,
+            "w": 52.4,
+            "h": 22.8
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "24 px Medium.",
+          "web": "—",
+          "dev": "28 px SemiBold."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-07",
+      "code": "DEC-07",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "La pestaña «Masivo» está en negrita",
+      "summary": "Dev usa peso 500; Figma, regular (400).",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-07-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 39.5,
+            "y": 41.2,
+            "w": 15.8,
+            "h": 18.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-07-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 40.8,
+            "y": 41.3,
+            "w": 13.2,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Regular (400).",
+          "web": "—",
+          "dev": "Peso 500."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-08",
+      "code": "DEC-08",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "Los textos de ejemplo de los selectores son más chicos",
+      "summary": "«País de destino» y «Categoría de envío» en 14 px en dev; 16 px en Figma.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-08-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 38.8,
+            "w": 68.8,
+            "h": 22.8
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-08-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 40.9,
+            "w": 63.7,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "16 px Regular.",
+          "web": "—",
+          "dev": "14 px."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-09",
+      "code": "DEC-09",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "El rango geográfico está en plural y sin negrita",
+      "summary": "Dev dice «Países Limítrofes» sin negrita; Figma, «País limítrofe» con el valor en negrita.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-09-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15088)",
+        "highlights": [
+          {
+            "x": 17.1,
+            "y": 43.4,
+            "w": 44.7,
+            "h": 13.6
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-09-dev.jpg",
+        "caption": "Captura dev-10 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 15.8,
+            "y": 42.5,
+            "w": 39.5,
+            "h": 15.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Rango geográfico: País limítrofe», con el valor en negrita.",
+          "web": "—",
+          "dev": "«Rango geográfico: Países Limítrofes», todo en peso regular."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-10",
+      "code": "DEC-10",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "A la tarjeta del artículo le falta la unidad de medida",
+      "summary": "La tarjeta de dev no tiene la fila «Unidad de medida» y usa textos de 14 px.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-10-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15088)",
+        "highlights": [
+          {
+            "x": 12.7,
+            "y": 43.3,
+            "w": 68.3,
+            "h": 13.6
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-10-dev.jpg",
+        "caption": "Captura dev-10 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 22.4,
+            "w": 63.7,
+            "h": 63.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Incluye «Unidad de medida»; textos en 16 px (AFU HU-05).",
+          "web": "—",
+          "dev": "Sin la fila «Unidad de medida»; textos en 14 px."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-11",
+      "code": "DEC-11",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "El modal comercial muestra enlaces y URL distintos",
+      "summary": "En dev los enlaces dicen «clic aquí», el de VUCE se ve como URL y el modal necesita desplazamiento.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-11-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (14459:53985)",
+        "highlights": [
+          {
+            "x": 16.7,
+            "y": 37.6,
+            "w": 66.7,
+            "h": 25.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-11-dev.jpg",
+        "caption": "Captura dev-03 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 18.4,
+            "y": 67.1,
+            "w": 20.2,
+            "h": 4.0
+          },
+          {
+            "x": 79.0,
+            "y": 9.2,
+            "w": 2.7,
+            "h": 81.8
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Todos los enlaces dicen «(hacé click acá)». Mide 685 px.",
+          "web": "—",
+          "dev": "Los enlaces dicen «clic aquí» y el de VUCE se ve como URL. Mide 723 px de alto y necesita desplazamiento."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "dec-12",
+      "code": "DEC-12",
+      "category": "visuales",
+      "group": "Declaración",
+      "title": "Con fines comerciales, la categoría bloqueada muestra la flecha de lista",
+      "summary": "Dev muestra «Venta de mercadería» como lista deshabilitada, con flecha; Figma, como campo de sólo lectura.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/dec-12-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15835)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 37.6,
+            "w": 69.0,
+            "h": 25.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/dec-12-dev.jpg",
+        "caption": "Captura dev-26 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 40.0,
+            "w": 63.7,
+            "h": 20.5
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Campo de sólo lectura, sin flecha.",
+          "web": "—",
+          "dev": "«Venta de mercadería» aparece como lista deshabilitada, con flecha."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "paq-02",
+      "code": "PAQ-02",
+      "category": "visuales",
+      "group": "Paquete",
+      "title": "«Guardar medida» se ve como un botón del navegador",
+      "summary": "Dev usa un botón nativo gris con borde; Figma, un enlace azul.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/paq-02-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 37.0,
+            "y": 42.3,
+            "w": 26.3,
+            "h": 15.9
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/paq-02-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 41.5,
+            "y": 42.3,
+            "w": 17.1,
+            "h": 15.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Enlace azul alineado a la derecha.",
+          "web": "—",
+          "dev": "Botón nativo, gris y con borde."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "paq-03",
+      "code": "PAQ-03",
+      "category": "visuales",
+      "group": "Paquete",
+      "title": "Los rótulos de peso y la ayuda del peso máximo son distintos",
+      "summary": "Cambian los textos de los rótulos y el peso máximo pasa de ayuda a fila.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/paq-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 12.3,
+            "y": 27.2,
+            "w": 65.0,
+            "h": 45.8
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/paq-03-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.7,
+            "y": 28.4,
+            "w": 64.3,
+            "h": 43.8
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Peso total de artículos declarados» y «Peso total aforado:»; «Peso máximo…» es una ayuda de 12 px bajo el campo.",
+          "web": "—",
+          "dev": "«Peso Total de Artículos» y «Peso Total Aforado»; «Peso máximo…» es una fila de 16 px."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "paq-04",
+      "code": "PAQ-04",
+      "category": "visuales",
+      "group": "Paquete",
+      "title": "El producto EMS tiene otro nombre",
+      "summary": "Dev dice «Encomienda EMS (Hasta 20kg)»; Figma y el AFU, «Mercadería EMS (Hasta 20kg)».",
+      "severity": "baja",
+      "status": "a-confirmar",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/paq-04-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 18.4,
+            "y": 42.2,
+            "w": 44.7,
+            "h": 15.9
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/paq-04-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 39.8,
+            "w": 63.7,
+            "h": 20.4
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: a confirmar.",
+        "Está en consulta con el cliente (D9, nombre del producto EMS)."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Mercadería EMS (Hasta 20kg)», también en el AFU HU-09.",
+          "web": "—",
+          "dev": "«Encomienda EMS (Hasta 20kg)»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "paq-05",
+      "code": "PAQ-05",
+      "category": "visuales",
+      "group": "Paquete",
+      "title": "Los campos de Paquete son más anchos",
+      "summary": "En dev producto y peso miden 600 px; en Figma, 480 px.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/paq-05-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15272)",
+        "highlights": [
+          {
+            "x": 12.5,
+            "y": 40.0,
+            "w": 64.4,
+            "h": 20.5
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/paq-05-dev.jpg",
+        "caption": "Captura dev-14 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 39.8,
+            "w": 63.7,
+            "h": 20.4
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "480 px.",
+          "web": "—",
+          "dev": "Producto y peso del paquete miden 600 px, igual que en Declaración."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "ori-01",
+      "code": "ORI-01",
+      "category": "visuales",
+      "group": "Origen",
+      "title": "Los encabezados y el rótulo de la dirección de devolución son distintos",
+      "summary": "Dev usa «Origen» y «Remitente» como encabezados; Figma sin fines usa «Remitente» y el selector «Dirección de devolución».",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/ori-01-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15612)",
+        "highlights": [
+          {
+            "x": 14.9,
+            "y": 20.1,
+            "w": 57.4,
+            "h": 60.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/ori-01-dev.jpg",
+        "caption": "Captura dev-15 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 13.1,
+            "y": 19.7,
+            "w": 56.6,
+            "h": 61.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "Las dos pantallas de Figma (sin fines y comercial) no coinciden entre sí: hay que elegir una antes de pedir el cambio."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Sin fines: encabezado «Remitente» sobre el nombre; el selector se llama «Dirección de devolución» (AFU HU-10). Comercial: encabezado «Origen» y selector «Remitente».",
+          "web": "—",
+          "dev": "En los dos flujos: encabezado «Origen» sobre el nombre; después, encabezado «Remitente» con texto explicativo y un selector también llamado «Remitente»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "ori-03",
+      "code": "ORI-03",
+      "category": "visuales",
+      "group": "Origen",
+      "title": "El mapa tiene otro tamaño",
+      "summary": "En dev el mapa mide 407 × 298 px; en Figma, 355 × 262 px.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/ori-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15612)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 16.5,
+            "w": 57.0,
+            "h": 67.4
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/ori-03-dev.jpg",
+        "caption": "Captura dev-15 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 21.3,
+            "y": 14.9,
+            "w": 57.5,
+            "h": 70.4
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "355 × 262 px.",
+          "web": "—",
+          "dev": "407 × 298 px, con la atribución de OpenStreetMap a la vista."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-05",
+      "code": "DES-05",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "La ayuda del teléfono y el rótulo del país son distintos",
+      "summary": "Cambian la ayuda del teléfono y el rótulo «País de destino».",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-05-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 45.4,
+            "y": 22.3,
+            "w": 18.5,
+            "h": 6.9
+          },
+          {
+            "x": 10.8,
+            "y": 65.4,
+            "w": 69.3,
+            "h": 12.5
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-05-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 43.8,
+            "y": 17.3,
+            "w": 26.8,
+            "h": 7.5
+          },
+          {
+            "x": 10.7,
+            "y": 67.8,
+            "w": 64.3,
+            "h": 15.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Ej.: 30 12345678» y «País de destino seleccionado:».",
+          "web": "—",
+          "dev": "«Solo números, sin espacios ni guiones» y «País de destino»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-06",
+      "code": "DES-06",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "Cada tarjeta de servicio postal muestra dos radios",
+      "summary": "Dev muestra un radio nativo y otro con estilo; Figma, uno solo.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-06-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 19.7,
+            "y": 43.3,
+            "w": 7.9,
+            "h": 13.6
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-06-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 17.1,
+            "y": 41.2,
+            "w": 11.9,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Un solo radio.",
+          "web": "—",
+          "dev": "Uno nativo y otro con estilo."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-07",
+      "code": "DES-07",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "EMS Documentación dice «Hasta 20kg»",
+      "summary": "Dev dice «Hasta 20kg»; Figma y el AFU, «Hasta 2kg».",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-07-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 18.7,
+            "y": 54.3,
+            "w": 59.4,
+            "h": 12.5
+          },
+          {
+            "x": 11.9,
+            "y": 33.5,
+            "w": 33.9,
+            "h": 10.4
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-07-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 18.5,
+            "y": 47.3,
+            "w": 55.6,
+            "h": 17.7
+          },
+          {
+            "x": 11.1,
+            "y": 35.4,
+            "w": 37.1,
+            "h": 11.0
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Hasta 2kg.» (AFU HU-13) y «Disponibles según destino y peso declarado».",
+          "web": "—",
+          "dev": "«EMS Documentación … Hasta 20kg.» y «Disponible según destino y peso declarado»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-08",
+      "code": "DES-08",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "La representación ante Aduana tiene textos distintos",
+      "summary": "Dev dice «me representa»; Figma, «me represente».",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-08-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:16071)",
+        "highlights": [
+          {
+            "x": 12.1,
+            "y": 41.2,
+            "w": 65.5,
+            "h": 18.2
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-08-dev.jpg",
+        "caption": "Captura dev-22 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 10.9,
+            "y": 43.5,
+            "w": 63.7,
+            "h": 13.6
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "Ver también «Falta la aclaración del cargo» (sin representación)."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«…me represente ante Aduana…».",
+          "web": "—",
+          "dev": "«…Correo Argentino me representa ante Aduana…»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-08b",
+      "code": "DES-08",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "Sin representación falta la aclaración del cargo",
+      "summary": "Figma aclara «Cargo adicional por gestionar sin representación»; dev sólo muestra un ícono ⓘ.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-08b-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:16185)",
+        "highlights": [
+          {
+            "x": 18.0,
+            "y": 24.2,
+            "w": 60.0,
+            "h": 53.1
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-08b-dev.jpg",
+        "caption": "Captura dev-24 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 15.8,
+            "y": 41.1,
+            "w": 31.6,
+            "h": 18.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "Es parte del código DES-08 de la auditoría."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Bajo el costo dice «Cargo adicional por gestionar sin representación de Correo Argentino» (AFU HU-14).",
+          "web": "—",
+          "dev": "El costo lleva un ícono ⓘ."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "des-09",
+      "code": "DES-09",
+      "category": "visuales",
+      "group": "Destino",
+      "title": "El modal de representación tiene el texto anterior",
+      "summary": "Dev usa el texto anterior y dice «Sin costo» en lugar de «Sin costo adicional».",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/des-09-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:16325)",
+        "highlights": [
+          {
+            "x": 5.0,
+            "y": 26.0,
+            "w": 90.0,
+            "h": 50.0
+          },
+          {
+            "x": 60.0,
+            "y": 90.0,
+            "w": 21.0,
+            "h": 5.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/des-09-dev.jpg",
+        "caption": "Captura dev-29 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 20.1,
+            "y": 18.4,
+            "w": 60.0,
+            "h": 43.1
+          },
+          {
+            "x": 55.1,
+            "y": 72.9,
+            "w": 16.0,
+            "h": 9.1
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Explica la verificación física de Aduana y la representación (art. 80, ap. 1, Decreto 604/2026). Dice «Sin costo adicional».",
+          "web": "—",
+          "dev": "«…serás citado vos o un tercero en tu representación…». Bajo «Mantener representación» dice «Sin costo»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-03",
+      "code": "RES-03",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "Los datos de Origen se muestran en filas",
+      "summary": "Dev pone rótulo y valor en la misma fila; Figma, rótulo arriba y valor abajo.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-03-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15612)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 17.8,
+            "w": 73.0,
+            "h": 64.5
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-03-dev.jpg",
+        "caption": "Captura dev-16 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 31.7,
+            "w": 74.7,
+            "h": 37.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Rótulo arriba y valor abajo, para direcciones largas.",
+          "web": "—",
+          "dev": "Rótulo a la izquierda y valor a la derecha."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-04",
+      "code": "RES-04",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "Sin datos, muestra ceros en vez de guiones",
+      "summary": "Dev muestra «0», «USD 0,00» y «0 kg»; Figma, «-».",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-04-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 10.8,
+            "y": 32.1,
+            "w": 69.3,
+            "h": 36.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-04-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 9.2,
+            "y": 44.8,
+            "w": 69.3,
+            "h": 55.2
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«-»; rótulos en gris (#474747).",
+          "web": "—",
+          "dev": "«0», «USD 0,00» y «0 kg»; rótulos en negro (#191919)."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-05",
+      "code": "RES-05",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "«Detalle» tiene «Editar»",
+      "summary": "Dev muestra «Editar» en Detalle; Figma, sólo la flecha.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-05-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15224)",
+        "highlights": [
+          {
+            "x": 21.4,
+            "y": 42.3,
+            "w": 72.2,
+            "h": 15.9
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-05-dev.jpg",
+        "caption": "Captura dev-01 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 42.5,
+            "w": 74.7,
+            "h": 15.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Sólo la flecha.",
+          "web": "—",
+          "dev": "Muestra «Editar» y flecha."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-06",
+      "code": "RES-06",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "Los rubros del Detalle están en mayúscula",
+      "summary": "Dev dice «Servicio Postal» y «Servicio de Entrega».",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-06-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 33.4,
+            "w": 73.0,
+            "h": 33.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-06-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 34.9,
+            "w": 74.7,
+            "h": 30.4
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "«Servicio postal» y «Servicio de entrega».",
+          "web": "—",
+          "dev": "«Servicio Postal» y «Servicio de Entrega»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-07",
+      "code": "RES-07",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "Con fines comerciales, la categoría aparece en el Resumen desde el inicio",
+      "summary": "Dev muestra «Venta de mercadería» apenas se activa el interruptor.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-07-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15835)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 43.3,
+            "w": 73.0,
+            "h": 13.7
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-07-dev.jpg",
+        "caption": "Captura dev-26 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 43.5,
+            "w": 74.7,
+            "h": 13.7
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "Muestra «-» hasta completar la declaración.",
+          "web": "—",
+          "dev": "Al activar el interruptor, el Resumen ya muestra «Venta de mercadería»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    },
+    {
+      "id": "res-08",
+      "code": "RES-08",
+      "category": "visuales",
+      "group": "Resumen",
+      "title": "Resumen › Destino tiene una fila «Servicio postal» de más",
+      "summary": "Dev suma «Servicio postal» en Destino; en Figma el servicio está sólo en Detalle.",
+      "severity": "baja",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/flujo/res-08-figma.png",
+        "caption": "Mi Correo 2.0 · flujo v1.8 (11695:15365)",
+        "highlights": [
+          {
+            "x": 21.6,
+            "y": 33.5,
+            "w": 73.0,
+            "h": 33.3
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · flujo"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este flujo no se relevó en la landing de producción."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/flujo/res-08-dev.jpg",
+        "caption": "Captura dev-17 de la auditoría (10/11/2026)",
+        "highlights": [
+          {
+            "x": 19.5,
+            "y": 42.4,
+            "w": 74.7,
+            "h": 15.9
+          }
+        ]
+      },
+      "details": [
+        "Tipo: visual. Estado en la auditoría: confirmada."
+      ],
+      "values": [
+        {
+          "prop": "Qué pasa",
+          "figma": "No tiene la fila «Servicio postal» (el servicio se ve en Detalle).",
+          "web": "—",
+          "dev": "Destino muestra País, Ciudad, Dirección y «Servicio postal»."
+        }
+      ],
+      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
+      "sources": []
+    }
+  ],
+  "devCapturedAt": "2026-11-11",
+  "figmaSources": {
+    "Design System": "kOuwVxF91lktyHh1DSVuAr",
+    "Mi Correo 2.0 · local": "wN6vAlF1TgGc2AJdJJvsAU · nodo 5416:13445 (Componentes)",
+    "Mi Correo 2.0 · global": "wN6vAlF1TgGc2AJdJJvsAU · nodo 2321:32898 (Componentes Globales - Mi Correo)"
+  }
+}

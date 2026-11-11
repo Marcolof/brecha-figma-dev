@@ -26,7 +26,7 @@ export default function DocPage() {
   return (
     <>
       <nav className={s.crumbs} aria-label="Ruta">
-        <Link to="/">Hub</Link>
+        <Link to="/documentacion">Documentación</Link>
         {mod && (
           <>
             <span aria-hidden="true">/</span>
@@ -61,7 +61,7 @@ export default function DocPage() {
       </nav>
 
       <p className={s.backBottom}>
-        <Link to={mod ? `/m/${mod.id}` : '/'}>← Volver a {mod ? mod.title : 'el Hub'}</Link>
+        <Link to={mod ? `/m/${mod.id}` : '/documentacion'}>← Volver a {mod ? mod.title : 'Documentación'}</Link>
       </p>
     </>
   );

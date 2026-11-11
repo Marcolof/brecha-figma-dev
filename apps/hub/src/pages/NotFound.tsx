@@ -6,7 +6,7 @@ export default function NotFound() {
     <div className={s.head}>
       <h1 className={s.title}>No encontramos esta página</h1>
       <p className={s.lead}>Puede que el documento se haya movido o todavía no esté sincronizado.</p>
-      <Link to="/">← Volver al Hub</Link>
+      <Link to="/">← Volver a las diferencias</Link>
     </div>
   );
 }
