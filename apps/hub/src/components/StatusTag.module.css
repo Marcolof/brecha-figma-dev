@@ -1,0 +1,27 @@
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ok {
+  background: #e3f3ea;
+  color: #1e623c;
+}
+
+.warn {
+  background: #fff6d1;
+  color: #6b5700;
+}
+
+.neutral {
+  background: #eceef4;
+  color: #445182;
+}

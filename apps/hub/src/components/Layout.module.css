@@ -1,0 +1,61 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--navy);
+  border-bottom: 4px solid var(--yellow);
+}
+
+.headerInner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, var(--yellow) 0 45%, transparent 45% 55%, var(--yellow) 55% 100%) center / 16px 12px no-repeat,
+    rgba(255, 255, 255, 0.12);
+  flex: none;
+}
+
+.name {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.client {
+  display: block;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 32px var(--gutter) 64px;
+}

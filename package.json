@@ -1,0 +1,19 @@
+{
+  "name": "brecha-hub",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Hub de la brecha Figma ↔ web de Correo Argentino: auditoría, planes y handoff del design system.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "sync": "node scripts/sync-content.mjs",
+    "dev": "npm run dev -w @brecha/hub",
+    "build": "npm run build -w @brecha/hub",
+    "preview": "npm run preview -w @brecha/hub"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

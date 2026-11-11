@@ -1,0 +1,179 @@
+.back,
+.crumbs {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.back a,
+.crumbs a,
+.backBottom a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.back a:hover,
+.crumbs a:hover,
+.backBottom a:hover {
+  text-decoration: underline;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.current {
+  color: var(--text);
+}
+
+.head {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 30px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+  color: var(--navy);
+}
+
+.lead {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.row:hover {
+  background: var(--hover);
+  border-color: #a7a7a7;
+}
+
+.row:focus-visible {
+  outline: none;
+  background-image: linear-gradient(var(--focus), var(--focus));
+  border-color: var(--navy);
+}
+
+.rowTitle {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.rowPath {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.downloads {
+  margin-top: 32px;
+}
+
+.h2 {
+  font-size: 18px;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+
+.dlRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dl {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.dl:hover {
+  background: var(--hover);
+}
+
+.doc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+@media (max-width: 600px) {
+  .doc {
+    padding: 20px 16px;
+  }
+}
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.pagerLink {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pagerLink:hover {
+  background: var(--hover);
+}
+
+.pagerNext {
+  text-align: right;
+}
+
+.pagerLabel {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.backBottom {
+  margin-top: 20px;
+  font-size: 14px;
+}

@@ -1,0 +1,29 @@
+---
+description: Design system Correo Argentino — usar al crear o modificar cualquier UI con MUI
+globs: ["**/*.tsx", "**/*.jsx", "**/theme*.ts"]
+alwaysApply: false
+---
+
+# Design system Correo Argentino (MUI)
+
+La fuente de verdad visual está en `design-system-handoff/` (generada desde Figma). **No uses el MCP de Figma para consultar componentes base**: leé estos archivos.
+
+## Antes de escribir UI
+
+1. Revisá `design-system-handoff/INVENTARIO.md` para saber qué componente de MUI corresponde.
+2. Abrí la ficha en `design-system-handoff/components/<archivo>.md` para conocer variantes, tamaños, estados y props.
+3. Los colores, la tipografía y los radios salen del theme (`theme.ts`). Nunca escribas hex sueltos en componentes.
+
+## Reglas
+
+- Usá `theme.palette.*`, `theme.typography.*` y `theme.shape.borderRadius`; en `sx`, usá claves del theme (`color: 'secondary.main'`, `bgcolor: 'background.default'`).
+- Espaciado: Figma usa escala de 4 px. El theme mantiene base 8, así que `spacing-N` de Figma = `theme.spacing(N / 2)` (ej. spacing-4 = 16 px = `theme.spacing(2)`).
+- Plataforma: la web pública MiCorreo usa `themeWeb` y los backoffices usan `themeBackoffice`. No mezcles los dos en una misma app.
+- Botones en MiCorreo: sólo `contained` (Primary), `outlined` (Secondary) y `text` (Tertiary, link). No uses `color="tertiary"`, `variant="light"` ni `variant="lightBorder"`: son de backoffice.
+- Botones en backoffice: las 6 versiones de `components/buttons.md`. `variant="text"` no existe.
+- No crees botones con `styled()` ni con `sx` para cambiar sus colores.
+- Inputs: siempre `TextField variant="outlined"`. `size="small"` = 40 px, por defecto = 48 px.
+- Íconos: `lucide-react`, con el mismo nombre que en Figma.
+- Fuente: Gilroy (ya está en el theme). No uses Inter, Roboto ni Poppins.
+- Si un componente no está en `INVENTARIO.md`, avisá que no tiene diseño aprobado antes de inventarlo.
+- Si encontrás un valor marcado con ⚠ en las fichas, respetá lo que dice `theme.ts` y no lo "corrijas" por tu cuenta.

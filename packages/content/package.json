@@ -1,0 +1,9 @@
+{
+  "name": "@brecha/content",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Copia derivada de los informes (auditoria-brecha, design-system-handoff, propuestas). Se regenera con `npm run sync`; no editar a mano.",
+  "main": "index.ts",
+  "types": "index.ts"
+}
