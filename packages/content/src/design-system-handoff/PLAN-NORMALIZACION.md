@@ -23,13 +23,13 @@ Que el Figma del Design System sea una fuente de verdad confiable y que producci
 |---|---|---|---|---|
 | 1 | **Matriz de cobertura de estados** (lectura de Figma, sin modificarlo): componente × enabled / hover / pressed / focus / disabled, indicando si existe y si usa variables | Backlog real y estimación | — | Bajo |
 | 2 | **Cerrar decisiones bloqueantes**: paleta invertida (amarillo `secondary` en producción vs. `primary` en Figma y `theme.ts`); si Modal, Checkbox y Menú lateral dependen de la plataforma | Decisiones registradas | — | Medio: cambia colores si se adopta `themeWeb` sin alinear |
-| 3 | **Completar estados en Figma por prioridad**: (a) foco de inputs y selects, Tertiary web, botones de header; (b) switch, tabs, chips; (c) Light y Light border | Matriz completa, con variables | 1 y 2 | Medio: toca variables usadas por otros nodos |
+| 3 | **Completar estados en Figma por prioridad**: (a) Tertiary web y focus del Secondary (ver `../propuestas/tareas-figma.md`, F3); (b) switch, tabs, chips; (c) Light y Light border | Matriz completa, con variables | 1 y 2 | Medio: toca variables usadas por otros nodos |
 | 4 | **Normalizar hallazgos del Figma**: nombres de plataforma, typos, variables huérfanas, radio-xs, Text Styles, sombras, paleta Warning | Figma consistente | 1 | Bajo |
 | 5 | **Ampliar la auditoría de producción**: formularios, tablas, modales y backoffices | Lista de diferencias completa | — (en paralelo con 3) | Bajo |
 | 6 | **Regenerar este paquete** (`theme.ts`, `tokens.json`, fichas, inventario) | Paquete con fecha nueva | 3 y 4 | Bajo |
 | 7 | **Lista de alineación para desarrollo**: diferencias Figma vs. producción por componente, priorizadas | Backlog para DEVs | 5 y 6 | Bajo |
 
-Los problemas de accesibilidad (foco del input invisible, Primary disabled igual a hover, contrastes bajos) van en el paso 3 y se corrigen en ambos lados, aunque producción mande.
+Los problemas de accesibilidad pendientes (contrastes bajos) van en el paso 3 y se corrigen en ambos lados, aunque producción mande. El foco del input, el Primary disabled igual a hover y el hover de los botones de header se descartaron en la revisión de UX del 2026-11-11 (`../auditoria-brecha/revision-ux-2026-11-11.md`).
 
 ## 4. Orden sugerido
 

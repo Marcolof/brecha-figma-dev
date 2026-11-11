@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-11T16:49:31.761Z",
+  "syncedAt": "2026-11-11T20:17:56.398Z",
   "sources": [
     "auditoria-brecha",
     "design-system-handoff",
@@ -23,6 +23,7 @@
     "auditoria-brecha/diferencias/img/dev-select-focus.png",
     "auditoria-brecha/diferencias/img/dev-select-hover.png",
     "auditoria-brecha/diferencias/img/dev-select-reposo.png",
+    "auditoria-brecha/diferencias/img/dev-switch-fines.png",
     "auditoria-brecha/diferencias/img/figma-boton-disabled.png",
     "auditoria-brecha/diferencias/img/figma-boton-focus.png",
     "auditoria-brecha/diferencias/img/figma-boton-hover-con-link.png",
@@ -129,6 +130,7 @@
     "auditoria-brecha/diferencias/img/mc2-articulo-reposo.png",
     "auditoria-brecha/diferencias/img/mc2-declaracion.png",
     "auditoria-brecha/diferencias/img/mc2-navbar.png",
+    "auditoria-brecha/diferencias/img/mc2-switch-fines-v2.png",
     "auditoria-brecha/diferencias/img/web-boton-focus.png",
     "auditoria-brecha/diferencias/img/web-boton-hover.png",
     "auditoria-brecha/diferencias/img/web-boton-pressed.png",
@@ -141,6 +143,7 @@
     "auditoria-brecha/img/micorreo-boton-hover.png",
     "auditoria-brecha/img/micorreo-boton-pressed.png",
     "auditoria-brecha/plan-tokens-buttons-v1.md",
+    "auditoria-brecha/revision-ux-2026-11-11.md",
     "design-system-handoff/INCONSISTENCIAS.md",
     "design-system-handoff/INVENTARIO.md",
     "design-system-handoff/PLAN-NORMALIZACION.md",
@@ -173,6 +176,7 @@
     "design-system-handoff/img/tipografia.png",
     "design-system-handoff/theme.ts",
     "design-system-handoff/tokens.json",
-    "propuestas/estados-mi-correo-2/spec.md"
+    "propuestas/estados-mi-correo-2/spec.md",
+    "propuestas/tareas-figma.md"
   ]
 }

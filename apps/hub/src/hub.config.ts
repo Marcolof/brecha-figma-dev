@@ -2,7 +2,7 @@
 // Sólo se listan módulos y documentos que existen (el Hub refleja el estado real).
 import { texts } from '@brecha/content';
 
-export type IconName = 'audit' | 'plan' | 'handoff';
+export type IconName = 'audit' | 'plan' | 'handoff' | 'diff' | 'docs';
 
 export interface HubModule {
   id: string;
@@ -34,6 +34,7 @@ const modules: HubModule[] = [
     status: 'Vigente',
     icon: 'audit',
     docs: [
+      'auditoria-brecha/revision-ux-2026-11-11.md',
       'auditoria-brecha/estados-interactivos-micorreo.md',
       'design-system-handoff/INCONSISTENCIAS.md',
       'design-system-handoff/INVENTARIO.md',
@@ -46,6 +47,7 @@ const modules: HubModule[] = [
     status: 'En curso',
     icon: 'plan',
     docs: [
+      'propuestas/tareas-figma.md',
       'auditoria-brecha/plan-tokens-buttons-v1.md',
       'propuestas/estados-mi-correo-2/spec.md',
       'design-system-handoff/PLAN-NORMALIZACION.md',

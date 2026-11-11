@@ -13,6 +13,19 @@ const paths: Record<IconName, JSX.Element> = {
       <path d="m8 12 2.5 2.5L16 9" />
     </>
   ),
+  diff: (
+    <>
+      <rect x="3" y="5" width="7.5" height="14" rx="1.5" />
+      <rect x="13.5" y="5" width="7.5" height="14" rx="1.5" />
+      <path d="M6.75 9.5v5M17.25 9.5v5" />
+    </>
+  ),
+  docs: (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </>
+  ),
   handoff: (
     <>
       <path d="m8 8-4 4 4 4" />

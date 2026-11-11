@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
+import Hub from './pages/Hub';
 import ModulePage from './pages/ModulePage';
 import DocPage from './pages/DocPage';
 import NotFound from './pages/NotFound';
@@ -21,7 +22,7 @@ export default function App() {
     <Layout>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Navigate to="/diferencias/componentes" replace />} />
+        <Route path="/" element={<Hub />} />
         <Route path="/diferencias" element={<Navigate to="/diferencias/componentes" replace />} />
         <Route path="/diferencias/:tab" element={<DiffList />} />
         <Route path="/diferencias/:tab/:id" element={<DiffDetail />} />

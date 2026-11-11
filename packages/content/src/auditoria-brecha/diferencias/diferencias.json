@@ -20,7 +20,7 @@
       "title": "Componentes",
       "description": "Estados de los componentes (reposo, hover, pressed, focus y disabled) que en producción se ven distinto a lo que define Figma.",
       "status": "relevado",
-      "note": "Relevado el 2026-11-04 en la landing de MiCorreo (producción) contra el Design System. El 2026-11-11 se sumaron capturas del entorno dev (/internacional) y su comparación con los componentes de Mi Correo 2.0. En dev coinciden con Mi Correo 2.0 el selector Nacional/Internacional y el stepper. El interruptor de fines comerciales está en la versión anterior (ver DEC-03 en Visuales)."
+      "note": "Relevado el 2026-11-04 en la landing de MiCorreo (producción) contra el Design System, revalidado contra el CSS de producción y de dev el 2026-11-11 y revisado por UX el mismo día (se descartaron disabled, pressed, header y foco del input). En dev coinciden con Mi Correo 2.0 el selector Nacional/Internacional y el stepper. El interruptor de fines comerciales sigue en la versión 1: ver «Switch de fines comerciales» en este tab y DEC-03 en Visuales."
     },
     {
       "id": "visuales",
@@ -46,79 +46,17 @@
   ],
   "items": [
     {
-      "id": "boton-primary-disabled",
-      "category": "componentes",
-      "group": "Botón Primary",
-      "title": "Disabled se ve igual que hover",
-      "summary": "En producción el botón deshabilitado queda amarillo al 60 %, igual que el hover: no se distingue.",
-      "severity": "alta",
-      "status": "abierta",
-      "figma": {
-        "kind": "capture",
-        "image": "img/figma-boton-disabled.png",
-        "caption": "Buttons v1.0 · Disabled",
-        "highlights": [
-          {
-            "x": 3.8,
-            "y": 9.3,
-            "w": 38.4,
-            "h": 81.5
-          }
-        ]
-      },
-      "web": {
-        "kind": "pending",
-        "caption": "Falta la captura de un botón deshabilitado en producción."
-      },
-      "details": [
-        "Figma define el disabled con fondo gris y texto gris. En producción el botón deshabilitado usa el mismo fondo que el hover y conserva el texto navy.",
-        "La persona no puede saber si el botón está deshabilitado o si sólo tiene el mouse encima. Es un problema de uso y de accesibilidad."
-      ],
-      "values": [
-        {
-          "prop": "Fondo",
-          "figma": "#D9D9D9",
-          "web": "rgba(255, 206, 0, 0.6)",
-          "dev": "#D9D9D9"
-        },
-        {
-          "prop": "Texto",
-          "figma": "#A7A7A7",
-          "web": "#152663",
-          "dev": "#8A8A8A"
-        }
-      ],
-      "decision": "Sin cambios en Figma: el disabled de Figma es el correcto. Lo tiene que corregir desarrollo.",
-      "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
-      ],
-      "dev": {
-        "kind": "capture",
-        "image": "img/dev-boton-disabled.png",
-        "caption": "«Guardar» deshabilitado en el resumen del envío",
-        "highlights": [
-          {
-            "x": 2.4,
-            "y": 2,
-            "w": 95.2,
-            "h": 86
-          }
-        ]
-      },
-      "devNote": "En dev el disabled es gris: ahí no se repite el problema. La diferencia se observó en la landing de producción."
-    },
-    {
       "id": "boton-primary-focus",
       "category": "componentes",
-      "group": "Botón Primary",
-      "title": "Focus con sombra en vez de contorno",
-      "summary": "Figma marca el foco de teclado con un contorno; producción usa la sombra de elevación por defecto de MUI.",
-      "severity": "media",
-      "status": "abierta",
+      "group": "Botón Primary y Secondary",
+      "title": "Focus: Figma cambia el color del borde; producción usa sombra",
+      "summary": "Figma marca el foco cambiando el borde de #FFCE00 a #FFF0B0; producción usa la sombra de elevación de MUI. Para UX cumplen la misma función.",
+      "severity": "baja",
+      "status": "resuelta",
       "figma": {
         "kind": "capture",
         "image": "img/figma-boton-focus.png",
-        "caption": "Buttons v1.0 · Focus",
+        "caption": "Buttons v1.0 · Focus: borde #FFF0B0, sin sombra",
         "highlights": [
           {
             "x": 3.4,
@@ -142,20 +80,29 @@
         ]
       },
       "details": [
-        "El foco de teclado tiene que verse en cualquier fondo. La sombra de MUI depende del fondo y en muchos casos casi no se nota.",
-        "Medición 2026-11-11 en «Ingresar»: con foco de teclado aparece la sombra de elevación de MUI y el ripple pulsante, que oscurece el centro del botón. Sobre el panel oscuro del login la sombra no se ve."
+        "El foco de Figma no es un contorno ni una sombra: es un cambio de color del borde. Funciona igual que la sombra de producción: indica qué botón tiene el foco de teclado.",
+        "En el Secondary, el Focus de Figma es igual al reposo. Quedó anotado en las tareas de Figma.",
+        "En dev no hay ninguna regla de foco para el botón: queda el contorno del navegador."
       ],
       "values": [
         {
-          "prop": "Indicador de foco",
-          "figma": "Contorno 2px #FFF0B0",
+          "prop": "Indicador de foco (Primary)",
+          "figma": "Borde 2px pasa de #FFCE00 a #FFF0B0",
           "web": "Sombra de elevación de MUI",
           "dev": "Contorno por defecto del navegador (#101010)"
+        },
+        {
+          "prop": "Indicador de foco (Secondary)",
+          "figma": "Igual al reposo (sin cambio)",
+          "web": "Sombra de elevación de MUI",
+          "dev": "Contorno por defecto del navegador"
         }
       ],
-      "decision": "Sin cambios en Figma. Lo tiene que resolver desarrollo.",
+      "decision": "UX, 2026-11-11: el cambio de color de Figma y la sombra de producción cumplen la misma función. No se trata como diferencia.",
       "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
+        "auditoria-brecha/revision-ux-2026-11-11.md",
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "propuestas/tareas-figma.md"
       ],
       "dev": {
         "kind": "capture",
@@ -175,11 +122,11 @@
     {
       "id": "boton-primary-tamano",
       "category": "componentes",
-      "group": "Botón Primary",
-      "title": "Alto y padding distintos",
-      "summary": "En producción el botón mide 44 de alto con padding 6/16; Figma define 40 o 48 con padding 20.",
+      "group": "Botón Primary y Secondary",
+      "title": "Alto y padding: hay que ajustar Figma",
+      "summary": "Producción y dev miden 44 de alto. Figma define 40 (M) y 48 (L) con padding 12/20: se corrige Figma.",
       "severity": "baja",
-      "status": "abierta",
+      "status": "cambio-figma",
       "figma": {
         "kind": "capture",
         "image": "img/figma-boton-reposo.png",
@@ -207,18 +154,20 @@
         ]
       },
       "details": [
-        "El alto de producción (44) no coincide con ninguno de los dos tamaños de Figma (40 y 48). La captura de producción está en hover, pero el tamaño es el mismo que en reposo."
+        "El alto de producción y de dev (44) no coincide con ninguno de los tamaños de Figma. Aplica al Primary y al Secondary.",
+        "Producción y dev no tienen el mismo padding (6/16 y 8/19,2). Al ajustar Figma hay que elegir uno.",
+        "Código de dev (2026-11-11): --button-height 44px, --button-padding-y .5rem, --button-padding-x 1.2rem y --button-radius 25px."
       ],
       "values": [
         {
           "prop": "Alto",
-          "figma": "40 / 48",
+          "figma": "40 (M) / 48 (L) / 32 (S)",
           "web": "44",
           "dev": "44"
         },
         {
           "prop": "Padding",
-          "figma": "20",
+          "figma": "12 / 20",
           "web": "6 / 16",
           "dev": "8 / 19,2"
         },
@@ -230,7 +179,9 @@
         }
       ],
       "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
+        "auditoria-brecha/revision-ux-2026-11-11.md",
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "propuestas/tareas-figma.md"
       ],
       "dev": {
         "kind": "capture",
@@ -245,20 +196,21 @@
           }
         ]
       },
-      "devNote": "En dev el alto también es 44, con otro padding y radio 25."
+      "devNote": "En dev el alto también es 44, con otro padding y radio 25.",
+      "decision": "UX, 2026-11-11: producción y dev están bien. El cambio va en Figma (ver tareas de Figma)."
     },
     {
       "id": "boton-primary-hover",
       "category": "componentes",
-      "group": "Botón Primary",
-      "title": "Hover con fondo transparente",
-      "summary": "Producción vuelve el fondo amarillo al 60 % en lugar de oscurecerlo. Figma ya adoptó este comportamiento.",
+      "group": "Botón Primary y Secondary",
+      "title": "Hover con fondo transparente: Figma ya está alineado",
+      "summary": "Figma, producción y dev usan el amarillo al 60 %. Sólo queda una diferencia menor en dev: baja también el borde al 60 % y el texto al 80 %.",
       "severity": "media",
       "status": "resuelta",
       "figma": {
         "kind": "capture",
         "image": "img/figma-boton-hover.png",
-        "caption": "Buttons v1.0 · Hover (actualizado el 2026-11-04)",
+        "caption": "Buttons v1.0 · Hover: #FFCE00 al 60 % (49:4488 en tamaño L)",
         "highlights": [
           {
             "x": 3.4,
@@ -282,24 +234,31 @@
         ]
       },
       "details": [
-        "Antes Figma oscurecía el fondo a #E8BB00. Producción usa el amarillo al 60 % de opacidad y deja el borde de 2px al 100 %, que se ve como un anillo.",
+        "El hover transparente está en Figma desde el 2026-11-04 en todas las variantes Hover de Buttons v1.0 (por ejemplo 49:4488). Antes era #E8BB00 sólido.",
+        "Verificado en el código (2026-11-11): en producción el 60 % es una regla propia que pisa el hover de MUI (#E6BC00). En dev es la variable --button-primary-bg-hover.",
         "Ojo: con opacidad, el color final depende de lo que haya detrás. Sobre la foto oscura del hero se ve amarillo sucio; sobre blanco equivale a #FFE266."
       ],
       "values": [
         {
-          "prop": "Fondo (Figma anterior)",
-          "figma": "#E8BB00",
+          "prop": "Fondo",
+          "figma": "#FFCE00 al 60 % (color-primary-500-a60)",
           "web": "rgba(255, 206, 0, 0.6)",
-          "dev": "rgba(255, 206, 0, 0.6)"
+          "dev": "rgba(255, 206, 0, .6)"
         },
         {
           "prop": "Borde",
           "figma": "2px #FFCE00",
           "web": "2px #FFCE00",
-          "dev": "2px rgba(255, 206, 0, 0.6)"
+          "dev": "2px rgba(255, 206, 0, .6)"
+        },
+        {
+          "prop": "Texto",
+          "figma": "#152663",
+          "web": "#152663",
+          "dev": "rgba(21, 38, 99, .8)"
         }
       ],
-      "decision": "2026-11-04: para los estados que Figma no resolvía, manda producción. Figma se actualizó en Buttons v1.0 (49:4524).",
+      "decision": "2026-11-04: para los estados que Figma no resolvía, manda producción. Figma se actualizó en Buttons v1.0 (49:4524). 2026-11-11: el valor de Figma coincide con el código de producción y de dev.",
       "sources": [
         "auditoria-brecha/estados-interactivos-micorreo.md",
         "auditoria-brecha/plan-tokens-buttons-v1.md"
@@ -320,72 +279,17 @@
       "devNote": "En dev el hover también usa el amarillo al 60 %, pero además baja el borde al 60 % y el texto al 80 %. No es igual a la landing."
     },
     {
-      "id": "boton-primary-pressed",
-      "category": "componentes",
-      "group": "Botón Primary",
-      "title": "Pressed con onda (ripple) de MUI",
-      "summary": "Producción suma al hover un círculo azul que se expande desde el clic. Figma lo representa con una capa navy al 30 %.",
-      "severity": "baja",
-      "status": "resuelta",
-      "figma": {
-        "kind": "capture",
-        "image": "img/figma-boton-pressed.png",
-        "caption": "Buttons v1.0 · Pressed (actualizado el 2026-11-04)",
-        "highlights": [
-          {
-            "x": 3.4,
-            "y": 9.3,
-            "w": 39.1,
-            "h": 83.3
-          }
-        ]
-      },
-      "web": {
-        "kind": "capture",
-        "image": "img/web-boton-pressed.png",
-        "caption": "«Nuevo envío» en el momento del clic",
-        "highlights": [
-          {
-            "x": 5.8,
-            "y": 16,
-            "w": 41.3,
-            "h": 68
-          }
-        ]
-      },
-      "details": [
-        "Antes Figma usaba un fondo sólido #B59200. El «más transparente» que se ve en producción es el ripple navy sobre el fondo al 60 %.",
-        "Figma no puede animar el ripple: lo aproxima con una capa #152663 al 30 % sobre el hover."
-      ],
-      "values": [
-        {
-          "prop": "Fondo (Figma anterior)",
-          "figma": "#B59200",
-          "web": "Hover + ripple #152663 ~30 %"
-        },
-        {
-          "prop": "Fondo (Figma actual)",
-          "figma": "Hover + capa #152663 30 %",
-          "web": "Hover + ripple #152663 ~30 %"
-        }
-      ],
-      "decision": "2026-11-04: manda producción. Figma se actualizó.",
-      "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
-      ]
-    },
-    {
       "id": "boton-secondary-borde",
       "category": "componentes",
-      "group": "Botón Secondary",
+      "group": "Botón Primary y Secondary",
       "title": "Borde de 2px en lugar de 1px",
-      "summary": "«Mis envíos» tiene borde de 2px en producción; Figma tenía 1px y ya se actualizó.",
+      "summary": "«Mis envíos» tiene borde de 2px en producción y en dev. Figma ya usa 2px en reposo, hover, focus y pressed; los Disabled siguen con 1px.",
       "severity": "baja",
       "status": "resuelta",
       "figma": {
         "kind": "capture",
         "image": "img/figma-boton-reposo.png",
-        "caption": "Buttons v1.0 · Secondary en reposo (actualizado el 2026-11-04)",
+        "caption": "Buttons v1.0 · Secondary en reposo, borde 2px",
         "highlights": [
           {
             "x": 56.6,
@@ -409,31 +313,39 @@
         ]
       },
       "details": [
-        "El borde de 2px se aplicó en Figma a todos los estados del Secondary."
+        "El borde de 2px se aplicó en Figma el 2026-11-04. Revisado el 2026-11-11: falta sólo el Disabled (Primary y Secondary quedan con 1px). Anotado en las tareas de Figma."
       ],
       "values": [
         {
           "prop": "Borde (Figma anterior)",
           "figma": "1px #FFCE00",
-          "web": "2px #FFCE00"
+          "web": "2px #FFCE00",
+          "dev": "2px #FFCE00"
         },
         {
           "prop": "Alto",
           "figma": "40 / 48",
-          "web": "44"
+          "web": "44",
+          "dev": "44"
         }
       ],
       "decision": "2026-11-04: manda producción. Figma se actualizó.",
       "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
-      ]
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "propuestas/tareas-figma.md"
+      ],
+      "dev": {
+        "kind": "code",
+        "caption": "Variables del Secondary (CSS de dev (/internacional), leído el 2026-11-11)",
+        "code": "--button-secondary-border: var(--correo-yellow);   /* #FFCE00 */\n--button-border-width: var(--border-width-base);  /* 2px */"
+      }
     },
     {
       "id": "boton-secondary-hover",
       "category": "componentes",
-      "group": "Botón Secondary",
+      "group": "Botón Primary y Secondary",
       "title": "Hover y pressed cambian el color del texto",
-      "summary": "En producción el hover aclara el texto a #6A78A8, un color que no es un token. Figma lo adoptó.",
+      "summary": "En producción el hover aclara el texto a #6A78A8, un color que no es un token. Figma adoptó el cambio, pero con el token secondary-300 (#626E96).",
       "severity": "media",
       "status": "resuelta",
       "figma": {
@@ -455,171 +367,42 @@
       },
       "details": [
         "Antes Figma cambiaba el color del borde a #E8BB00. Producción deja el borde igual y cambia el texto.",
-        "#6A78A8 no está en la escala de tokens: el más cercano es secondary-300 (#626E96). En pressed, producción muestra el ripple de MUI."
+        "#6A78A8 no está en la escala de tokens. El 2026-11-05 (decisión D1 del plan de tokens) Figma pasó a usar secondary-300 (#626E96): diferencia perceptual ΔE 6 y mejor contraste (5,01:1 contra 4,32:1). Es una deriva intencional respecto de producción.",
+        "Dev tiene su propio hover: borde amarillo al 60 % y texto navy al 80 % (variables --button-secondary-border-hover y --button-primary-text-hover). El Secondary no aparece en la pantalla de dev relevada: el dato sale del CSS."
       ],
       "values": [
         {
           "prop": "Borde en hover (Figma anterior)",
           "figma": "#E8BB00",
-          "web": "#FFCE00 (sin cambio)"
+          "web": "#FFCE00 (sin cambio)",
+          "dev": "rgba(255, 206, 0, .6)"
         },
         {
           "prop": "Texto en hover",
-          "figma": "#6A78A8",
-          "web": "#6A78A8"
-        },
-        {
-          "prop": "Pressed (Figma anterior)",
-          "figma": "Borde #B59200",
-          "web": "Ripple de MUI"
+          "figma": "#626E96 (secondary-300)",
+          "web": "#6A78A8",
+          "dev": "rgba(21, 38, 99, .8)"
         }
       ],
-      "decision": "2026-11-04: manda producción. Queda pendiente decidir si #6A78A8 pasa a ser un token.",
+      "decision": "2026-11-04: manda producción. 2026-11-05 (D1): el texto de hover usa secondary-300 (#626E96) en lugar de #6A78A8.",
       "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
-      ]
-    },
-    {
-      "id": "header-botones-hover",
-      "category": "componentes",
-      "group": "Header",
-      "title": "Botones del header sin hover",
-      "summary": "«Nuevo envío», «Mi cuenta» y el menú no cambian al pasar el mouse. El Navbar de Mi Correo 2.0 tampoco define hover.",
-      "severity": "media",
-      "status": "abierta",
-      "figma": {
-        "kind": "capture",
-        "image": "img/mc2-navbar.png",
-        "caption": "Navbar desktop · V1 PROD (2321:32930): no tiene variante de hover",
-        "highlights": [
-          {
-            "x": 9.9,
-            "y": 16.7,
-            "w": 29.6,
-            "h": 66.7
-          }
-        ],
-        "sublabel": "Mi Correo 2.0 · global"
-      },
-      "web": {
-        "kind": "pending",
-        "caption": "Falta la captura del header de producción."
-      },
-      "details": [
-        "En el CSS de producción hay una regla de hover con #E6BC00, pero otra posterior la pisa con transparent: el hover no se ve.",
-        "El Design System no tiene botones de header. El Navbar existe en Mi Correo 2.0 (componentes globales), pero sin variante de hover: hay que definirla."
-      ],
-      "values": [
-        {
-          "prop": "Hover",
-          "figma": "No definido (Navbar sin variante hover)",
-          "web": "Ninguno (transparent)",
-          "dev": "Ninguno"
-        },
-        {
-          "prop": "Forma",
-          "figma": "Navbar Mi Correo 2.0",
-          "web": "Radio 8, alto 42, texto #191919",
-          "dev": "Radio 8, alto 42, texto #191919"
-        }
-      ],
-      "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
+        "auditoria-brecha/estados-interactivos-micorreo.md",
+        "auditoria-brecha/plan-tokens-buttons-v1.md"
       ],
       "dev": {
-        "kind": "capture",
-        "image": "img/dev-header-hover.png",
-        "caption": "Mouse sobre «Nuevo envío»: el header no cambia",
-        "highlights": [
-          {
-            "x": 3.8,
-            "y": 18,
-            "w": 26.4,
-            "h": 62
-          },
-          {
-            "x": 42.4,
-            "y": 40,
-            "w": 17.6,
-            "h": 40
-          }
-        ]
-      },
-      "devNote": "En dev se confirma: ni «Nuevo envío», ni «Mi cuenta», ni el menú cambian con el mouse encima."
-    },
-    {
-      "id": "input-focus",
-      "category": "componentes",
-      "group": "Input",
-      "title": "El foco del input no se ve",
-      "summary": "Al hacer foco en «Gestionar devolución», el borde queda gris claro en lugar del azul que define Figma.",
-      "severity": "alta",
-      "status": "abierta",
-      "figma": {
-        "kind": "capture",
-        "image": "img/figma-input-focus.png",
-        "caption": "Text Fields · Focus",
-        "highlights": [
-          {
-            "x": 4.3,
-            "y": 8.9,
-            "w": 91.4,
-            "h": 82.2
-          }
-        ]
-      },
-      "web": {
-        "kind": "capture",
-        "image": "img/web-input-focus.png",
-        "caption": "«Código de seguimiento» con foco: el borde queda gris y la etiqueta sube en gris, 2026-11-11",
-        "highlights": [
-          {
-            "x": 2.8,
-            "y": 26.6,
-            "w": 75.2,
-            "h": 45
-          }
-        ]
-      },
-      "details": [
-        "Existe una clase specialOutlined con el azul #2196F3, pero este input no la usa.",
-        "Sin foco visible, quien navega con teclado no sabe dónde está parado.",
-        "Medición 2026-11-11: con foco, borde y etiqueta pasan a gris #9E9E9E. Sigue sin el azul #2196F3 de Figma."
-      ],
-      "values": [
-        {
-          "prop": "Borde en focus",
-          "figma": "1px #2196F3",
-          "web": "1px #9E9E9E (medido 2026-11-11; el 2026-11-04 se había anotado #E0E0E0)",
-          "dev": "1px #2196F3"
-        }
-      ],
-      "sources": [
-        "auditoria-brecha/estados-interactivos-micorreo.md"
-      ],
-      "dev": {
-        "kind": "capture",
-        "image": "img/dev-select-focus.png",
-        "caption": "Select «País de destino» con foco de teclado",
-        "highlights": [
-          {
-            "x": 2.4,
-            "y": 12.4,
-            "w": 95.3,
-            "h": 68.1
-          }
-        ]
-      },
-      "devNote": "En dev el foco sí se ve: borde #2196F3 y etiqueta flotante, como en Figma. El problema queda en la landing."
+        "kind": "code",
+        "caption": "Reglas del Secondary (CSS de dev (/internacional), leído el 2026-11-11). No aparece en la pantalla relevada.",
+        "code": "._secondary:hover:not(:disabled) {\n  background-color: var(--button-secondary-bg-hover);   /* #FFFFFF */\n  border-color: var(--button-secondary-border-hover);   /* rgba(255, 206, 0, .6) */\n  color: var(--button-primary-text-hover);              /* rgba(21, 38, 99, .8) */\n}"
+      }
     },
     {
       "id": "input-hover",
       "category": "componentes",
       "group": "Input",
       "title": "Hover casi invisible",
-      "summary": "Figma no define el hover del input; en producción el borde pasa a un gris más claro que el de reposo.",
+      "summary": "Figma no define el hover del input; en producción el borde cambia apenas (#D9D9D9 → #BDBDBD) y en dev no cambia.",
       "severity": "media",
-      "status": "abierta",
+      "status": "en-observacion",
       "figma": {
         "kind": "missing",
         "caption": "Text Fields no tiene estado hover."
@@ -638,8 +421,9 @@
         ]
       },
       "details": [
-        "Producción aclara el borde de #D9D9D9 a #E0E0E0: el cambio casi no se percibe y va en sentido contrario al esperado.",
-        "Medición 2026-11-11 en «Código de seguimiento»: reposo #D9D9D9, hover #BDBDBD. El cambio existe pero es sutil."
+        "El 2026-11-04 se anotó #E0E0E0, más claro que el reposo. La medición del 2026-11-11 en «Código de seguimiento» da #BDBDBD: el borde se oscurece un poco, en el sentido esperado, pero el cambio es sutil.",
+        "En dev no hay regla de hover para los campos (CSS revisado el 2026-11-11).",
+        "UX, 2026-11-11: no es relevante por ahora. Queda en observación."
       ],
       "values": [
         {
@@ -650,6 +434,7 @@
         }
       ],
       "sources": [
+        "auditoria-brecha/revision-ux-2026-11-11.md",
         "auditoria-brecha/estados-interactivos-micorreo.md",
         "design-system-handoff/INCONSISTENCIAS.md"
       ],
@@ -673,7 +458,7 @@
       "category": "componentes",
       "group": "Input",
       "title": "Radio de borde 8 en lugar de 4",
-      "summary": "El input de producción tiene las esquinas más redondeadas que el de Figma.",
+      "summary": "El radio correcto es 4, el de Figma. Producción usa 8 y dev 5: los tiene que corregir desarrollo.",
       "severity": "baja",
       "status": "abierta",
       "figma": {
@@ -703,8 +488,9 @@
         ]
       },
       "details": [
-        "Además, el radio 4 de Figma no existe en la colección Radius, cuyo mínimo es 8.",
-        "Medición 2026-11-11: radio 8 y borde #D9D9D9 en «Código de seguimiento». Los campos del login usan borde #E0E0E0."
+        "Medición 2026-11-11: radio 8 en «Código de seguimiento» (producción) y 5 en el select de dev (--field-radius: var(--radius-xs)).",
+        "El radio 4 no existe en la colección Radius de Figma, cuyo mínimo es 8. Agregar radius-xs = 4 quedó en las tareas de Figma.",
+        "Los campos del login de producción usan borde #E0E0E0."
       ],
       "values": [
         {
@@ -721,8 +507,10 @@
         }
       ],
       "sources": [
+        "auditoria-brecha/revision-ux-2026-11-11.md",
         "auditoria-brecha/estados-interactivos-micorreo.md",
-        "design-system-handoff/INCONSISTENCIAS.md"
+        "design-system-handoff/INCONSISTENCIAS.md",
+        "propuestas/tareas-figma.md"
       ],
       "dev": {
         "kind": "capture",
@@ -737,7 +525,8 @@
           }
         ]
       },
-      "devNote": "En dev hay un tercer valor: radio 5 y borde #CCCCCC. No coincide ni con Figma ni con la landing."
+      "devNote": "En dev hay un tercer valor: radio 5 y borde #CCCCCC. No coincide ni con Figma ni con la landing.",
+      "decision": "UX, 2026-11-11: el valor correcto es 4 (Figma). Producción y dev se ajustan a Figma."
     },
     {
       "id": "input-error",
@@ -765,7 +554,8 @@
         "caption": "Falta la captura de un input con error en producción."
       },
       "details": [
-        "El rojo de Figma (#F03131) tampoco llega al contraste mínimo para texto de 14 px (4,05:1). error-600 (#DA2D2D) sí cumple."
+        "El rojo de Figma (#F03131) tampoco llega al contraste mínimo para texto de 14 px (4,05:1). error-600 (#DA2D2D) sí cumple.",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -869,7 +659,8 @@
       },
       "details": [
         "Ni siquiera el disabled del link se distingue en Figma. Hay que completar la matriz de estados.",
-        "La captura de producción es de «¿Dónde encuentro mi código de seguimiento?» (landing sin sesión). «Cerrar sesión» necesita la sesión iniciada y no se volvió a capturar."
+        "La captura de producción es de «¿Dónde encuentro mi código de seguimiento?» (landing sin sesión). «Cerrar sesión» necesita la sesión iniciada y no se volvió a capturar.",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -923,18 +714,26 @@
       },
       "details": [
         "No es una diferencia visible: es de estructura. Si se adopta themeWeb sin alinear esto, el código que hoy usa color=\"secondary\" va a cambiar de color.",
-        "Hay que acordarlo con desarrollo antes de adoptar el theme."
+        "Hay que acordarlo con desarrollo antes de adoptar el theme.",
+        "Reconfirmado el 2026-11-11: «Ingresar» y «Continuar» siguen con MuiButton-containedSecondary."
       ],
       "values": [
         {
           "prop": "Botón amarillo",
           "figma": "primary",
-          "web": "secondary"
+          "web": "secondary",
+          "dev": "Variable propia --button-primary-*"
         }
       ],
       "sources": [
         "auditoria-brecha/estados-interactivos-micorreo.md"
-      ]
+      ],
+      "dev": {
+        "kind": "code",
+        "caption": "Variables de los botones y campos de /internacional (CSS de dev (/internacional), leído el 2026-11-11)",
+        "code": "/* CSS Modules con variables propias, sin el theme de MUI */\n--button-primary-bg: var(--correo-yellow);\n--button-primary-bg-hover: rgba(255, 206, 0, .6);\n--field-border: var(--border-width-thin) solid var(--border-default);\n--field-radius: var(--radius-xs);   /* 5px */"
+      },
+      "devNote": "En /internacional los botones, campos, switch y checkbox no usan MUI: son CSS Modules con un juego de variables propio. Sólo el header y algunos íconos siguen en MUI. Adoptar themeWeb no alcanza para alinear esta parte."
     },
     {
       "id": "mc2-articulo-borde",
@@ -977,7 +776,8 @@
       },
       "devNote": "El borde #CCCCCC y el radio 6 se repiten en el disabled y en el select de dev: es un valor propio de esta implementación, no un token.",
       "details": [
-        "Es un componente exclusivo de Mi Correo 2.0 (componentes locales del flujo internacional)."
+        "Es un componente exclusivo de Mi Correo 2.0 (componentes locales del flujo internacional).",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -1038,7 +838,8 @@
       },
       "devNote": "Colores medidos sobre la captura: el estilo de hover no está en el botón sino en otro elemento.",
       "details": [
-        "El fondo de hover coincide con el token color-background-hover. Cambia sólo el borde."
+        "El fondo de hover coincide con el token color-background-hover. Cambia sólo el borde.",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -1098,7 +899,8 @@
         ]
       },
       "details": [
-        "Es el mismo patrón que el botón «Siguiente»: dev no implementa el foco diseñado y queda el del navegador."
+        "Es el mismo patrón que el botón «Siguiente»: dev no implementa el foco diseñado y queda el del navegador.",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -1158,7 +960,8 @@
         ]
       },
       "details": [
-        "Diferencia chica, pero repite el gris #CCCCCC que dev usa en lugar del token de borde."
+        "Diferencia chica, pero repite el gris #CCCCCC que dev usa en lugar del token de borde.",
+        "Revalidado en el código de dev (/internacional) el 2026-11-11. Los valores de dev coinciden con lo anotado."
       ],
       "values": [
         {
@@ -1176,6 +979,98 @@
       ],
       "sources": [
         "auditoria-brecha/diferencias/README.md"
+      ]
+    },
+    {
+      "id": "mc2-switch-fines",
+      "category": "componentes",
+      "group": "Fines comerciales · Mi Correo 2.0",
+      "title": "Switch de fines comerciales en la versión anterior",
+      "summary": "Dev muestra la versión 1 (leyenda e interruptor a la derecha). Mi Correo 2.0 ya tiene la versión 2: interruptor a la izquierda con «No»/«Sí» y sin leyenda.",
+      "severity": "media",
+      "status": "abierta",
+      "figma": {
+        "kind": "capture",
+        "image": "img/mc2-switch-fines-v2.png",
+        "caption": "Fines comerciales switch · fines comerciales=False, version=v2 (15293:25588)",
+        "highlights": [
+          {
+            "x": 0.0,
+            "y": 28.0,
+            "w": 15.0,
+            "h": 34.0
+          }
+        ],
+        "sublabel": "Mi Correo 2.0 · local"
+      },
+      "web": {
+        "kind": "pending",
+        "caption": "Este componente no aparece en la landing de producción relevada."
+      },
+      "dev": {
+        "kind": "capture",
+        "image": "img/dev-switch-fines.png",
+        "caption": "«Envío con fines comerciales» en /internacional, sin activar (2026-11-11)",
+        "highlights": [
+          {
+            "x": 88.0,
+            "y": 8.0,
+            "w": 10.5,
+            "h": 38.0
+          },
+          {
+            "x": 0.5,
+            "y": 28.0,
+            "w": 51.0,
+            "h": 24.0
+          }
+        ]
+      },
+      "values": [
+        {
+          "prop": "Versión",
+          "figma": "v2",
+          "web": "—",
+          "dev": "v1"
+        },
+        {
+          "prop": "Etiqueta",
+          "figma": "Gilroy Medium 16, #191919",
+          "web": "—",
+          "dev": "Medium 14, #191919"
+        },
+        {
+          "prop": "Leyenda de sucursales",
+          "figma": "No tiene (pendiente D3)",
+          "web": "—",
+          "dev": "«Solo disponible desde sucursales con asiento aduanero.» en 12 px"
+        },
+        {
+          "prop": "Interruptor",
+          "figma": "A la izquierda, con el estado «No» / «Sí» al lado",
+          "web": "—",
+          "dev": "A la derecha, sin estado en texto"
+        },
+        {
+          "prop": "Color apagado / encendido",
+          "figma": "#D9D9D9 / #2A8A54",
+          "web": "—",
+          "dev": "#D9D9D9 / #2A8A54"
+        },
+        {
+          "prop": "Tamaño del interruptor",
+          "figma": "49 × 24",
+          "web": "—",
+          "dev": "48 × 24"
+        }
+      ],
+      "details": [
+        "Es el mismo hallazgo que DEC-03 (Visuales), visto desde el componente. Los colores y el tamaño del interruptor coinciden: cambia la composición.",
+        "La versión 2 se agregó el 2026-11-06 al componente «Fines comerciales switch» (10933:13731) de Mi Correo 2.0, al lado de la versión 1. Su descripción dice: sin estados de interacción adicionales.",
+        "Dev implementa el interruptor con role=\"switch\" y una etiqueta asociada (commercial-purpose-label). «Información a tener en cuenta» coincide con Figma: azul #2562EA, 16 px Medium."
+      ],
+      "sources": [
+        "propuestas/estados-mi-correo-2/spec.md"
       ]
     },
     {
@@ -2196,67 +2091,6 @@
       "sources": []
     },
     {
-      "id": "gen-01",
-      "category": "visuales",
-      "group": "General",
-      "title": "El menú de usuario dice «Mi cuenta»",
-      "summary": "El Navbar de Mi Correo 2.0 (V1 PROD y v2) dice «Ver más» con chevron hacia arriba; dev dice «Mi cuenta» con chevron hacia abajo.",
-      "severity": "baja",
-      "status": "abierta",
-      "figma": {
-        "kind": "capture",
-        "image": "img/mc2-navbar.png",
-        "caption": "Navbar desktop · V1 PROD, logueado (2321:32930)",
-        "highlights": [
-          {
-            "x": 55.8,
-            "y": 51,
-            "w": 17.6,
-            "h": 36
-          }
-        ],
-        "sublabel": "Mi Correo 2.0 · global"
-      },
-      "web": {
-        "kind": "pending",
-        "caption": "Este componente no aparece en la landing de producción relevada."
-      },
-      "dev": {
-        "kind": "capture",
-        "image": "img/dev-header-reposo.png",
-        "caption": "Header de /internacional, logueado con un usuario de prueba",
-        "highlights": [
-          {
-            "x": 42.6,
-            "y": 43.2,
-            "w": 17.0,
-            "h": 36.8
-          }
-        ]
-      },
-      "details": [
-        "Tipo: visual. Estado en la auditoría: confirmada.",
-        "El nombre de la persona es de ejemplo en los dos lados."
-      ],
-      "values": [
-        {
-          "prop": "Texto del menú",
-          "figma": "Ver más",
-          "web": "—",
-          "dev": "Mi cuenta"
-        },
-        {
-          "prop": "Chevron (cerrado)",
-          "figma": "Hacia arriba",
-          "web": "—",
-          "dev": "Hacia abajo"
-        }
-      ],
-      "sources": [],
-      "code": "GEN-01",
-      "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md)."
-    },
-    {
       "id": "gen-02",
       "code": "GEN-02",
       "category": "visuales",
@@ -2351,7 +2185,8 @@
         ]
       },
       "details": [
-        "Tipo: visual. Estado en la auditoría: confirmada."
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "El componente v2 está en Mi Correo 2.0: «Fines comerciales switch» (10933:13731), variantes version=v2 (15293:25588 sin fines y 15293:25599 con fines). Revalidado en dev el 2026-11-11: sigue la versión 1. Ver también «Switch de fines comerciales» en Componentes."
       ],
       "values": [
         {
@@ -2370,9 +2205,9 @@
       "category": "visuales",
       "group": "Declaración",
       "title": "Con fines comerciales sigue visible «Detallá la categoría…»",
-      "summary": "Dev muestra el texto «Detallá la categoría del envío y el contenido del paquete.», que no está en la Declaración comercial de Figma.",
+      "summary": "Dev muestra «Detallá la categoría del envío y el contenido del paquete.» también con fines comerciales. Dev está bien: el texto se agrega en la Declaración comercial de Figma.",
       "severity": "baja",
-      "status": "abierta",
+      "status": "cambio-figma",
       "figma": {
         "kind": "capture",
         "image": "img/flujo/dec-04-figma.png",
@@ -2405,7 +2240,8 @@
         ]
       },
       "details": [
-        "Tipo: visual. Estado en la auditoría: confirmada."
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "UX, 2026-11-11: no es un error de dev. Hay que sumar el texto a la Declaración comercial de Figma (11695:15835)."
       ],
       "values": [
         {
@@ -2416,7 +2252,11 @@
         }
       ],
       "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
-      "sources": []
+      "sources": [
+        "auditoria-brecha/revision-ux-2026-11-11.md",
+        "propuestas/tareas-figma.md"
+      ],
+      "decision": "UX, 2026-11-11: el cambio va en Figma (tarea F5)."
     },
     {
       "id": "dec-05",
@@ -2532,8 +2372,8 @@
       "code": "DEC-07",
       "category": "visuales",
       "group": "Declaración",
-      "title": "La pestaña «Masivo» está en negrita",
-      "summary": "Dev usa peso 500; Figma, regular (400).",
+      "title": "La pestaña «Masivo» está en negrita y tiene hover",
+      "summary": "Dev usa peso 500 en lugar de regular (400) y además le agrega un estado de hover que no existe en Figma ni en producción.",
       "severity": "baja",
       "status": "abierta",
       "figma": {
@@ -2568,18 +2408,27 @@
         ]
       },
       "details": [
-        "Tipo: visual. Estado en la auditoría: confirmada."
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "UX, 2026-11-11: en Figma y en producción las pestañas Individual / Masivo no tienen hover. En dev hay que quitarlo."
       ],
       "values": [
         {
-          "prop": "Qué pasa",
+          "prop": "Peso de «Masivo»",
           "figma": "Regular (400).",
           "web": "—",
           "dev": "Peso 500."
+        },
+        {
+          "prop": "Hover de la pestaña",
+          "figma": "Sin hover",
+          "web": "Sin hover",
+          "dev": "Con hover: el estado sobra"
         }
       ],
       "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
-      "sources": []
+      "sources": [
+        "auditoria-brecha/revision-ux-2026-11-11.md"
+      ]
     },
     {
       "id": "dec-08",
@@ -2809,9 +2658,9 @@
       "category": "visuales",
       "group": "Declaración",
       "title": "Con fines comerciales, la categoría bloqueada muestra la flecha de lista",
-      "summary": "Dev muestra «Venta de mercadería» como lista deshabilitada, con flecha; Figma, como campo de sólo lectura.",
+      "summary": "Con fines comerciales, la categoría queda bloqueada en «Venta de mercadería». Figma la dibuja como campo de sólo lectura; hay que usar el componente Select deshabilitado, como dev.",
       "severity": "baja",
-      "status": "abierta",
+      "status": "cambio-figma",
       "figma": {
         "kind": "capture",
         "image": "img/flujo/dec-12-figma.png",
@@ -2844,7 +2693,8 @@
         ]
       },
       "details": [
-        "Tipo: visual. Estado en la auditoría: confirmada."
+        "Tipo: visual. Estado en la auditoría: confirmada.",
+        "UX, 2026-11-11: la flecha de lista de dev es correcta. Figma tiene que usar el componente Select en estado deshabilitado en lugar de un campo de sólo lectura."
       ],
       "values": [
         {
@@ -2855,7 +2705,11 @@
         }
       ],
       "sourceNote": "Auditoría dev vs Figma del 06/11/2026, reverificada el 10/11/2026 (DIFERENCIAS-DEV-VS-FIGMA.md).",
-      "sources": []
+      "sources": [
+        "auditoria-brecha/revision-ux-2026-11-11.md",
+        "propuestas/tareas-figma.md"
+      ],
+      "decision": "UX, 2026-11-11: se corrige Figma usando el componente Select (tarea F6)."
     },
     {
       "id": "paq-02",

@@ -3,6 +3,7 @@
 `diferencias.json` es la fuente que consume el Hub (`brecha-hub`, sección **Diferencias**). Después de editarlo, correr `npm run sync` dentro de `brecha-hub`.
 
 - **categories:** los tabs del listado (`componentes`, `visuales`, `funcionales`). `status: "pendiente"` muestra el tab vacío con la nota.
+- **status** de cada item: `abierta`, `resuelta` (resuelta en Figma), `a-confirmar`, `cambio-figma` (el cambio va en Figma; ver `../../propuestas/tareas-figma.md`) o `en-observacion`. Las decisiones de UX del 2026-11-11 están en `../revision-ux-2026-11-11.md`.
 - **items:** una diferencia por elemento. `figma` y `web` son los dos lados de la comparación:
   - `capture`: imagen de `img/` y `highlights` (rectángulos rojos en % del ancho y alto de la imagen: `x`, `y`, `w`, `h`);
   - `pending`: falta la captura (se muestra «Captura pendiente»);

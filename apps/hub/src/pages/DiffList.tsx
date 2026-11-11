@@ -9,6 +9,7 @@ import {
   statusLabel,
 } from '../lib/diferencias';
 import { formatDate, syncedAt } from '../lib/content';
+import BackTitle from '../components/BackTitle';
 import s from './Diff.module.css';
 
 export default function DiffList() {
@@ -20,11 +21,13 @@ export default function DiffList() {
   const open = items.filter((i) => i.status === 'abierta').length;
   const toConfirm = items.filter((i) => i.status === 'a-confirmar').length;
   const solved = items.filter((i) => i.status === 'resuelta').length;
+  const figma = items.filter((i) => i.status === 'cambio-figma').length;
+  const watch = items.filter((i) => i.status === 'en-observacion').length;
 
   return (
     <>
       <header className={s.intro}>
-        <h1 className={s.title}>Diferencias Figma ↔ Web</h1>
+        <BackTitle title="Diferencias Figma ↔ Web" className={s.title} />
         <p className={s.lead}>
           Qué se ve o funciona distinto entre Figma (Design System y Mi Correo 2.0) y la web de MiCorreo (producción y entorno dev). Contenido al{' '}
           {formatDate(syncedAt)}.
@@ -60,6 +63,8 @@ export default function DiffList() {
             <p className={s.summaryLine}>
               {items.length} {items.length === 1 ? 'elemento' : 'elementos'} · <strong>{open} {open === 1 ? 'abierto' : 'abiertos'}</strong>
               {toConfirm > 0 && <> · {toConfirm} a confirmar</>}
+              {figma > 0 && <> · {figma} con cambio pendiente en Figma</>}
+              {watch > 0 && <> · {watch} en observación</>}
               {solved > 0 && <> · {solved} {solved === 1 ? 'resuelto' : 'resueltos'} en Figma</>}.{' '}
               <span className={s.muted}>{cat.note}</span>
             </p>

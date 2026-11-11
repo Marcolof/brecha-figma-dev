@@ -6,6 +6,8 @@
 - **Fecha:** 2026-11-04
 - **Alcance:** sólo los elementos visibles en la landing. Falta relevar el resto de las pantallas de MiCorreo.
 
+> **Estado (2026-11-11):** las tablas 1 a 5 son el registro de lo medido el 2026-11-04. Las decisiones vigentes están en [revision-ux-2026-11-11.md](revision-ux-2026-11-11.md): varias observaciones se eliminaron o cambiaron (disabled del Primary, focus, pressed, header, foco del input).
+
 ---
 
 ## 1. Botón Primary (amarillo) — p. ej. "Nuevo envío" en la tarjeta del hero
@@ -67,18 +69,37 @@ En producción, el botón amarillo usa `MuiButton-containedSecondary`. Es decir,
 
 ## Conclusiones
 
-1. **El patrón de producción para hover y pressed no sale de Figma:** son defaults de MUI (opacidad, ripple, elevación) mezclados con overrides parciales. Por eso no coinciden con nada del design system.
-2. **Hay tres problemas de accesibilidad y uso:** disabled igual a hover en el Primary, el foco de los inputs que no se ve, y el foco de los botones que depende de una sombra.
-3. **Figma tampoco está completo:** el Tertiary (link) no tiene estados, y faltan hover y focus en inputs, switch, tabs, chips y en los botones de header.
+1. **El patrón de producción para hover y pressed no sale de Figma:** son defaults de MUI (ripple, elevación) mezclados con overrides propios. El hover al 60 % y el borde de 2px **no** son defaults: son reglas que escribieron los DEVs y pisan el hover de MUI (`#E6BC00`), verificado en el CSS el 2026-11-11. Por eso no coinciden con nada del design system.
+2. **Hay tres problemas de accesibilidad y uso:** disabled igual a hover en el Primary, el foco de los inputs que no se ve, y el foco de los botones que depende de una sombra. *(Revisado por UX el 2026-11-11: los tres se descartaron o se dieron por resueltos. Ver [revision-ux-2026-11-11.md](revision-ux-2026-11-11.md).)*
+3. **Figma tampoco está completo:** el Tertiary (link) no tiene estados, y faltan hover y focus en inputs, switch, tabs, chips y en los botones de header. *(2026-11-11: los botones de header no llevan hover, por decisión de UX.)*
 
 ## Decisión (2026-11-04)
 
 **Para los estados que Figma no resuelve, manda producción.** Aplicado en Figma, `Buttons v1.0` (49:4524), en 21 variantes:
 - Primary: borde 2px `#FFCE00`; hover `#FFCE00` al 60 %; pressed = hover + capa `#152663` al 30 %.
-- Secondary: borde de 2px en todos los estados; hover y pressed con texto e ícono `#6A78A8`; pressed con la misma capa al 30 %.
+- Secondary: borde de 2px en todos los estados; hover y pressed con texto e ícono `#6A78A8`; pressed con la misma capa al 30 %. *(Reemplazado el 2026-11-05: el texto usa `secondary-300` `#626E96`, decisión D1 de [plan-tokens-buttons-v1.md](plan-tokens-buttons-v1.md).)*
 - Sin cambios: Disabled (el de producción es igual al hover), Focus y Tertiary.
 - Se crearon 3 variables nuevas en `Specific/Buttons/`, para no tocar las de hover y pressed existentes, que usan otros 6 nodos fuera del componente.
 - `themeWeb` quedó alineado con esto.
+
+## Revalidación contra el código (2026-11-11)
+
+Lectura de las reglas CSS de la landing de producción (sin sesión) y de la web dev `/internacional` (con usuario de prueba). El detalle por componente está en el Hub, sección **Diferencias**.
+
+| Tema | Lo anotado el 2026-11-04 | Lo que dice el código hoy |
+|---|---|---|
+| Hover del Primary | `rgba(255, 206, 0, 0.6)`, default de MUI | ✅ mismo valor, pero es una **regla propia** que pisa el hover de MUI (`#E6BC00`). En dev es la variable `--button-primary-bg-hover: rgba(255, 206, 0, .6)`. Figma usa `#FFCE00` al 60 % (`color-primary-500-a60`): coincide con los dos |
+| Hover del Primary en dev | — | además baja el borde al 60 % y el texto al 80 % (`rgba(21, 38, 99, .8)`) |
+| Pressed en dev | — | sombra interior `inset 0 3px 5px rgba(0, 0, 0, .125)`; sin ripple |
+| Disabled del Primary | fondo al 60 %, texto `#152663` | ✅ igual; el borde también queda al 60 % |
+| Hover del input | borde `#E0E0E0` | `#BDBDBD` (medido el 2026-11-11 en «Código de seguimiento») |
+| Focus del input | borde `#E0E0E0` | `#9E9E9E`; sigue sin el azul `#2196F3` |
+| Hover del link | cambia el color del subrayado («Cerrar sesión») | en «¿Dónde encuentro mi código…?» aparece el subrayado navy |
+| Botones y campos de dev | — | no usan MUI: son CSS Modules con variables propias (`--button-*`, `--field-*`) |
+
+## Revisión de UX (2026-11-11)
+
+Las decisiones sobre cada observación están en [revision-ux-2026-11-11.md](revision-ux-2026-11-11.md), y los cambios que van en Figma, en [tareas-figma.md](../propuestas/tareas-figma.md).
 
 ## Propuesta original (referencia)
 

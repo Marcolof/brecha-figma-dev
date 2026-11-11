@@ -12,7 +12,7 @@ Es el patrón *outlined* de MUI: la etiqueta flota sobre el borde superior.
 
 | Parte | Valor |
 |---|---|
-| Caja | radio 4 ⚠, fondo `#FFFFFF`, borde 1px |
+| Caja | radio 4 ⚠ (valor correcto según UX, 2026-11-11; falta el token `radius-xs`, tarea F4), fondo `#FFFFFF`, borde 1px |
 | Padding interno | 10 horizontal |
 | Valor | Gilroy Regular 16, `#191919` (input-text-value) |
 | Placeholder | Gilroy Regular 16, `#474747` (input-text-placeholder) |

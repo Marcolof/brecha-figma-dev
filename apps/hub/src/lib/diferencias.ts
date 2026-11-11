@@ -6,7 +6,7 @@ const SOURCE = 'auditoria-brecha/diferencias/diferencias.json';
 const BASE = 'auditoria-brecha/diferencias/';
 
 export type Severity = 'alta' | 'media' | 'baja';
-export type DiffStatus = 'abierta' | 'resuelta' | 'a-confirmar';
+export type DiffStatus = 'abierta' | 'resuelta' | 'a-confirmar' | 'cambio-figma' | 'en-observacion';
 
 export interface Highlight {
   x: number;
@@ -101,4 +101,10 @@ export const imageUrl = (rel: string) => images[BASE + rel];
 export const diffRoute = (categoryId: string, id?: string) => `/diferencias/${categoryId}${id ? '/' + id : ''}`;
 
 export const severityLabel: Record<Severity, string> = { alta: 'Alta', media: 'Media', baja: 'Baja' };
-export const statusLabel: Record<DiffStatus, string> = { abierta: 'Abierta', resuelta: 'Resuelta en Figma', 'a-confirmar': 'A confirmar' };
+export const statusLabel: Record<DiffStatus, string> = {
+  abierta: 'Abierta',
+  resuelta: 'Resuelta en Figma',
+  'a-confirmar': 'A confirmar',
+  'cambio-figma': 'Cambio pendiente en Figma',
+  'en-observacion': 'En observación',
+};

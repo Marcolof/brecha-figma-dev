@@ -19,8 +19,8 @@ El código usa siempre `<Button>`, y el theme de cada app le da el estilo correc
 
 | Figma `Version` | MUI | Fondo | Texto | Borde |
 |---|---|---|---|---|
-| Primary | `variant="contained"` (por defecto) | `#FFCE00` | `#152663` | — |
-| Secondary | `variant="outlined"` | `#FFFFFF` | `#152663` | 1px **`#FFCE00`** |
+| Primary | `variant="contained"` (por defecto) | `#FFCE00` | `#152663` | 2px `#FFCE00` |
+| Secondary | `variant="outlined"` | `#FFFFFF` | `#152663` | 2px **`#FFCE00`** |
 | Tertiary | `variant="text"` | — | `#152663` | línea inferior 1px `#FFCE00` (tipo link) |
 
 ```tsx
@@ -38,7 +38,7 @@ Hover y pressed se actualizaron en Figma el 2026-11-04 con los valores de produc
 | Enabled | bg `#FFCE00` + borde 2px `#FFCE00` | bg blanco + borde **2px** `#FFCE00` | texto navy + línea amarilla |
 | Hover | bg **`rgba(255,206,0,0.6)`** + borde 2px `#FFCE00` | borde igual, texto e ícono **`#626E96`** (secondary-300) | ⚠ igual a enabled |
 | Pressed | hover + capa `#152663` al 30 % (en código, el **ripple** de MUI) | hover + capa al 30 % (ripple) | ⚠ igual a enabled |
-| Focus | contorno 2px `#FFF0B0` | ⚠ igual a enabled | ⚠ igual a enabled |
+| Focus | el borde de 2px pasa a `#FFF0B0` (cambio de color, sin sombra) | ⚠ igual a enabled (tarea F3) | ⚠ igual a enabled |
 | Disabled | bg `#D9D9D9`, texto `#A7A7A7` | borde `#D9D9D9`, texto `#A7A7A7` | ⚠ igual a enabled |
 
 ### Tokens de componente (Figma → `Specific/Buttons/`)
@@ -54,11 +54,11 @@ Hover y pressed se actualizaron en Figma el 2026-11-04 con los valores de produc
 | `Pressed/button-pressed-overlay` | `Primitive/color-secondary-500-a30` | `#152663` al 30 % |
 | `Stroke/button-border-width` | — | 2 |
 
-Disabled **no** se copió de producción, porque allí es igual al hover. El texto hover usa `secondary-300` en lugar del `#6A78A8` de producción (ΔE 6; mejora el contraste de 4,32 a 5,01).
+Disabled **no** se copió de producción: el vigente es el de Figma (la comparación con el disabled de producción se descartó el 2026-11-11 porque son componentes distintos). El texto hover usa `secondary-300` en lugar del `#6A78A8` de producción (ΔE 6; mejora el contraste de 4,32 a 5,01).
 
 ⚠ Tertiary no tiene estados en Figma: el theme propone hover (línea `#E8BB00`) y disabled (texto `#A7A7A7`). El foco de teclado usa contorno 2px en todas las versiones.
 
-**Fuente de los estados:** producción (decisión de UX del 2026-11-04). `themeWeb` reproduce el borde de 2px, el hover al 60 % y deja activo el ripple de MUI para el pressed. Diferencias que quedan con producción: el disabled (se usa el de Figma) y el tamaño (Figma 40/48 vs. producción 44). Detalle en `../auditoria-brecha/estados-interactivos-micorreo.md`.
+**Fuente de los estados:** producción (decisión de UX del 2026-11-04). `themeWeb` reproduce el borde de 2px, el hover al 60 % y deja activo el ripple de MUI para el pressed. Diferencia que queda con producción: el tamaño. Producción y dev miden 44 de alto y Figma 40/48; por decisión de UX (2026-11-11) se ajusta Figma (tarea F1 de `../../propuestas/tareas-figma.md`). Detalle en `../auditoria-brecha/estados-interactivos-micorreo.md`.
 
 **Regla provisoria de uso (UX, 2026-11-06):** en MiCorreo, Primary, Secondary y Tertiary salen de v1.0. De Buttons 2.0 se pueden usar las versiones que v1.0 no tiene: dark, light, light border, **borderless**, **borderless link** y sólo ícono. No se mezclan dos Primary de familias distintas en una misma pantalla.
 

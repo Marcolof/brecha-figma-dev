@@ -3,13 +3,14 @@ import Icon from '../components/Icon';
 import StatusTag from '../components/StatusTag';
 import { hubModules, project } from '../hub.config';
 import { formatDate, syncedAt } from '../lib/content';
+import BackTitle from '../components/BackTitle';
 import s from './Home.module.css';
 
 export default function Home() {
   return (
     <>
       <section className={s.intro}>
-        <h1 className={s.title}>Documentación</h1>
+        <BackTitle title="Documentación" className={s.title} />
         <p className={s.version}>
           Informes completos de la auditoría, planes y handoff · versión <strong>{project.version}</strong> · contenido al {formatDate(syncedAt)}
         </p>

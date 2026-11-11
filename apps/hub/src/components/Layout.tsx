@@ -6,11 +6,12 @@ import s from './Layout.module.css';
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const inDocs = /^\/(documentacion|m|doc)(\/|$)/.test(pathname);
+  const inDiff = /^\/diferencias(\/|$)/.test(pathname);
   return (
     <div className={s.shell}>
       <header className={s.header}>
         <div className={s.headerInner}>
-          <Link to="/" className={s.brand} aria-label="Ir a las diferencias">
+          <Link to="/" className={s.brand} aria-label="Ir al Hub">
             <span className={s.mark} aria-hidden="true" />
             <span>
               <span className={s.name}>{project.name}</span>
@@ -18,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </span>
           </Link>
           <nav className={s.nav} aria-label="Secciones">
-            <NavLink to="/diferencias/componentes" className={() => `${s.navLink} ${!inDocs ? s.navActive : ''}`} aria-current={!inDocs ? 'page' : undefined}>
+            <NavLink to="/diferencias/componentes" className={() => `${s.navLink} ${inDiff ? s.navActive : ''}`} aria-current={inDiff ? 'page' : undefined}>
               Diferencias
             </NavLink>
             <NavLink to="/documentacion" className={() => `${s.navLink} ${inDocs ? s.navActive : ''}`} aria-current={inDocs ? 'page' : undefined}>
