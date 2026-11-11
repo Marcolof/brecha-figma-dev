@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-11T15:37:31.578Z",
+  "syncedAt": "2026-11-11T16:49:31.761Z",
   "sources": [
     "auditoria-brecha",
     "design-system-handoff",
@@ -129,8 +129,13 @@
     "auditoria-brecha/diferencias/img/mc2-articulo-reposo.png",
     "auditoria-brecha/diferencias/img/mc2-declaracion.png",
     "auditoria-brecha/diferencias/img/mc2-navbar.png",
+    "auditoria-brecha/diferencias/img/web-boton-focus.png",
     "auditoria-brecha/diferencias/img/web-boton-hover.png",
     "auditoria-brecha/diferencias/img/web-boton-pressed.png",
+    "auditoria-brecha/diferencias/img/web-input-focus.png",
+    "auditoria-brecha/diferencias/img/web-input-hover.png",
+    "auditoria-brecha/diferencias/img/web-input-reposo.png",
+    "auditoria-brecha/diferencias/img/web-link-hover.png",
     "auditoria-brecha/diferencias/importar-auditoria-flujo.py",
     "auditoria-brecha/estados-interactivos-micorreo.md",
     "auditoria-brecha/img/micorreo-boton-hover.png",
