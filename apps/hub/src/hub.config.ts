@@ -48,6 +48,7 @@ const modules: HubModule[] = [
     icon: 'plan',
     docs: [
       'propuestas/tareas-figma.md',
+      'propuestas/tareas-dev.md',
       'auditoria-brecha/plan-tokens-buttons-v1.md',
       'propuestas/estados-mi-correo-2/spec.md',
       'design-system-handoff/PLAN-NORMALIZACION.md',

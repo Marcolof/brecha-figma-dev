@@ -239,6 +239,36 @@
   color: #474747;
 }
 
+.num {
+  display: inline-block;
+  min-width: 34px;
+  margin-right: 8px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--yellow);
+  color: var(--navy);
+  font: 700 12px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  text-align: center;
+  vertical-align: 1px;
+}
+
+.st_cambio-dev {
+  background: #fde9d9;
+  color: #8a3b0a;
+}
+
+.st_a-definir {
+  background: #f1e8fb;
+  color: #5b2c86;
+}
+
+.owner {
+  background: transparent;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-weight: 500;
+}
+
 .st_resuelta {
   background: #e3f3ea;
   color: #1e623c;

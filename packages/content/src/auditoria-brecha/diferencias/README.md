@@ -4,6 +4,8 @@
 
 - **categories:** los tabs del listado (`componentes`, `visuales`, `funcionales`). `status: "pendiente"` muestra el tab vacío con la nota.
 - **status** de cada item: `abierta`, `resuelta` (resuelta en Figma), `a-confirmar`, `cambio-figma` (el cambio va en Figma; ver `../../propuestas/tareas-figma.md`) o `en-observacion`. Las decisiones de UX del 2026-11-11 están en `../revision-ux-2026-11-11.md`.
+- **num:** número fijo del punto, `<tab>.<orden>` (1 Componentes, 2 Visuales, 3 Funcionales, 4 Ambiente). Un punto nuevo toma el siguiente número libre de su tab; los números de puntos eliminados no se reutilizan.
+- **owners:** quién tiene que actuar («Figma», «DEV», «Negocio»). Estados: `abierta`, `a-confirmar`, `cambio-figma`, `cambio-dev`, `a-definir`, `en-observacion`, `resuelta`.
 - **items:** una diferencia por elemento. `figma` y `web` son los dos lados de la comparación:
   - `capture`: imagen de `img/` y `highlights` (rectángulos rojos en % del ancho y alto de la imagen: `x`, `y`, `w`, `h`);
   - `pending`: falta la captura (se muestra «Captura pendiente»);

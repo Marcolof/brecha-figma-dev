@@ -23,6 +23,8 @@ export default function DiffList() {
   const solved = items.filter((i) => i.status === 'resuelta').length;
   const figma = items.filter((i) => i.status === 'cambio-figma').length;
   const watch = items.filter((i) => i.status === 'en-observacion').length;
+  const devs = items.filter((i) => i.status === 'cambio-dev').length;
+  const define = items.filter((i) => i.status === 'a-definir').length;
 
   return (
     <>
@@ -64,6 +66,8 @@ export default function DiffList() {
               {items.length} {items.length === 1 ? 'elemento' : 'elementos'} · <strong>{open} {open === 1 ? 'abierto' : 'abiertos'}</strong>
               {toConfirm > 0 && <> · {toConfirm} a confirmar</>}
               {figma > 0 && <> · {figma} con cambio pendiente en Figma</>}
+              {devs > 0 && <> · {devs} con cambio pendiente en DEV</>}
+              {define > 0 && <> · {define} pendientes de definición</>}
               {watch > 0 && <> · {watch} en observación</>}
               {solved > 0 && <> · {solved} {solved === 1 ? 'resuelto' : 'resueltos'} en Figma</>}.{' '}
               <span className={s.muted}>{cat.note}</span>
@@ -77,6 +81,7 @@ export default function DiffList() {
                       <Link to={diffRoute(cat.id, it.id)} className={s.row}>
                         <span className={s.rowBody}>
                           <span className={s.rowTitle}>
+                            {it.num && <span className={s.num}>{it.num}</span>}
                             {it.code && <span className={s.code}>{it.code}</span>}
                             {it.title}
                           </span>
@@ -84,6 +89,9 @@ export default function DiffList() {
                           <span className={s.tags}>
                             {it.severity && <span className={`${s.tag} ${s['sev_' + it.severity]}`}>Impacto {severityLabel[it.severity].toLowerCase()}</span>}
                             <span className={`${s.tag} ${s['st_' + it.status]}`}>{statusLabel[it.status]}</span>
+                            {it.owners?.map((o) => (
+                              <span key={o} className={`${s.tag} ${s.owner}`}>{o}</span>
+                            ))}
                           </span>
                         </span>
                         <svg className={s.chevron} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

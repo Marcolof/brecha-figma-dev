@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-11T20:17:56.398Z",
+  "syncedAt": "2026-11-12T14:43:17.013Z",
   "sources": [
     "auditoria-brecha",
     "design-system-handoff",
@@ -177,6 +177,7 @@
     "design-system-handoff/theme.ts",
     "design-system-handoff/tokens.json",
     "propuestas/estados-mi-correo-2/spec.md",
+    "propuestas/tareas-dev.md",
     "propuestas/tareas-figma.md"
   ]
 }

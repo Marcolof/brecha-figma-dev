@@ -48,12 +48,18 @@ export default function DiffDetail() {
       </nav>
 
       <header className={s.detailHead}>
-        {it.code && <p className={s.codeLine}>{it.code}</p>}
+        {(it.num || it.code) && (
+          <p className={s.codeLine}>
+            {it.num && <span className={s.num}>{it.num}</span>}
+            {it.code}
+          </p>
+        )}
         <h1 className={s.title}>{it.title}</h1>
         <p className={s.lead}>{it.summary}</p>
         <span className={s.tags}>
           {it.severity && <span className={`${s.tag} ${s['sev_' + it.severity]}`}>Impacto {severityLabel[it.severity].toLowerCase()}</span>}
           <span className={`${s.tag} ${s['st_' + it.status]}`}>{statusLabel[it.status]}</span>
+          {it.owners && it.owners.length > 0 && <span className={`${s.tag} ${s.owner}`}>Responsable: {it.owners.join(' y ')}</span>}
         </span>
       </header>
 

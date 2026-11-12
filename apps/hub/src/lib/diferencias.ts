@@ -6,7 +6,8 @@ const SOURCE = 'auditoria-brecha/diferencias/diferencias.json';
 const BASE = 'auditoria-brecha/diferencias/';
 
 export type Severity = 'alta' | 'media' | 'baja';
-export type DiffStatus = 'abierta' | 'resuelta' | 'a-confirmar' | 'cambio-figma' | 'en-observacion';
+export type DiffStatus = 'abierta' | 'resuelta' | 'a-confirmar' | 'cambio-figma' | 'cambio-dev' | 'a-definir' | 'en-observacion';
+export type Owner = 'Figma' | 'DEV' | 'Negocio';
 
 export interface Highlight {
   x: number;
@@ -29,6 +30,10 @@ export type Side = (
 
 export interface DiffItem {
   id: string;
+  /** Número fijo del punto: <tab>.<orden> (por ejemplo, 2.3). No se reutiliza. */
+  num?: string;
+  /** Quién tiene que actuar. */
+  owners?: Owner[];
   /** Código de la auditoría de origen (por ejemplo, DEC-01). */
   code?: string;
   /** Fuente en texto cuando no es un documento del Hub. */
@@ -106,5 +111,7 @@ export const statusLabel: Record<DiffStatus, string> = {
   resuelta: 'Resuelta en Figma',
   'a-confirmar': 'A confirmar',
   'cambio-figma': 'Cambio pendiente en Figma',
+  'cambio-dev': 'Cambio pendiente en DEV',
+  'a-definir': 'Pendiente de definición',
   'en-observacion': 'En observación',
 };
