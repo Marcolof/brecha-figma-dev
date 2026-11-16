@@ -18,7 +18,7 @@
 | F8 | «Guardar medida»: elegir un botón para ese lugar (hoy es un enlace azul). Después DEV ajusta el estilo | **Mi Correo 2.0**, pantalla 11695:15272 (Paquete) | 2.12 · PAQ-02 | Pendiente de definición |
 | F9 | Rótulos de peso del paso Paquete y ayuda del peso máximo: pasar a 16 px | **Mi Correo 2.0**, pantalla 11695:15272 (Paquete) | 2.13 · PAQ-03 | Pendiente |
 | F10 | Alto de los campos: confirmar si pasa de 42 a 40, como se pide a DEV | **Mi Correo 2.0**, campos del flujo internacional | 2.1 · GEN-02 y 2.7 · DEC-08 | A confirmar |
-| F11 | Ancho máximo de los campos: pasar de 480 a **600 px**, como dev (producto y peso del paso Paquete; Declaración ya usa 600 en dev) | **Mi Correo 2.0**, pantalla 11695:15272 (Paquete) y demás pantallas del flujo con campos de 480 | 2.15 · PAQ-05 | Pendiente |
+| F11 | Ancho máximo de los campos: pasar de 480 a **600 px**, como dev (producto y peso del paso Paquete; Declaración ya usa 600 en dev) | **Mi Correo 2.0**, pantalla 11695:15272 (Paquete) y demás pantallas del flujo con campos de 480 | 2.15 · PAQ-05 | Hecha (verificada el 2026-11-16) |
 
 ## Mejoras de Figma (sin fecha)
 

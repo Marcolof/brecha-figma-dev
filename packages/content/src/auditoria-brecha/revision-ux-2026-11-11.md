@@ -9,7 +9,7 @@
 
 | N.º | Código | Observación | Decisión | Responsable | Estado en el Hub |
 |---|---|---|---|---|---|
-| 2.15 | PAQ-05 | Los campos de Paquete son más anchos | El ancho máximo pasa a 600 px en Figma, como en dev: Figma y dev quedan alineados como fuente de verdad | Figma | Cambio pendiente en Figma (F11) |
+| 2.15 | PAQ-05 | Los campos de Paquete son más anchos | El ancho máximo pasa a 600 px en Figma, como en dev: Figma y dev quedan alineados como fuente de verdad | Figma | Resuelta en Figma (F11 hecha, verificada el 16/11) |
 
 ## Revisión del 2026-11-12
 

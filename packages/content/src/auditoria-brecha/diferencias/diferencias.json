@@ -2988,9 +2988,9 @@
       "category": "visuales",
       "group": "Paquete",
       "title": "Los campos de Paquete son más anchos",
-      "summary": "En dev producto y peso miden 600 px; en Figma, 480 px. Se lleva Figma a 600 px de ancho máximo, como dev.",
+      "summary": "Dev mide 600 px en producto y peso. Figma ya se llevó a 600 px de ancho máximo: quedan alineados.",
       "severity": "baja",
-      "status": "cambio-figma",
+      "status": "resuelta",
       "figma": {
         "kind": "capture",
         "image": "img/flujo/paq-05-figma.png",
@@ -3029,7 +3029,7 @@
       "values": [
         {
           "prop": "Qué pasa",
-          "figma": "480 px.",
+          "figma": "600 px (antes 480 px).",
           "web": "—",
           "dev": "Producto y peso del paquete miden 600 px, igual que en Declaración."
         }
@@ -3043,7 +3043,7 @@
       "owners": [
         "Figma"
       ],
-      "decision": "UX, 2026-11-16: el ancho máximo de los campos pasa a 600 px en Figma, igual que en dev. Así Figma y dev quedan alineados como fuente de verdad (tarea F11)."
+      "decision": "UX, 2026-11-16: el ancho máximo de los campos pasa a 600 px en Figma, igual que en dev. Hecho en Figma y verificado el 2026-11-16 (campos de la pantalla Paquete 11695:15272 a 600 px). Tarea F11 cerrada."
     },
     {
       "id": "ori-01",
