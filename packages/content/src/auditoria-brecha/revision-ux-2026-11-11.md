@@ -5,6 +5,12 @@
 - **Cambios que van en Figma:** [tareas-figma.md](../propuestas/tareas-figma.md). **Cambios que van en DEV:** [tareas-dev.md](../propuestas/tareas-dev.md).
 - **Numeración:** cada punto lleva un número fijo `<tab>.<orden>` (1 Componentes, 2 Visuales, 3 Funcionales, 4 Ambiente), el mismo que muestra el Hub. Los números no se reutilizan.
 
+## Revisión del 2026-11-16
+
+| N.º | Código | Observación | Decisión | Responsable | Estado en el Hub |
+|---|---|---|---|---|---|
+| 2.15 | PAQ-05 | Los campos de Paquete son más anchos | El ancho máximo pasa a 600 px en Figma, como en dev: Figma y dev quedan alineados como fuente de verdad | Figma | Cambio pendiente en Figma (F11) |
+
 ## Revisión del 2026-11-12
 
 Prevalece sobre la del 11/11 donde se contradicen.
