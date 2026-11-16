@@ -28,6 +28,7 @@
 
 ## Ya hecho (referencia)
 
+- Estado de error de «Servicio postal internacional» (**Mi Correo 2.0**, set 5793:37763): variante nueva `status=Error, selected=false` (15582:31050), igual al Enabled sin seleccionar con el borde en `Stroke/color-stroke-error` (#F03131) del Design System (2026-11-16).
 - Hover transparente del Primary (`#FFCE00` al 60 %, `color-primary-500-a60`) en todas las variantes Hover de `Buttons v1.0`, por ejemplo 49:4488. Coincide con el código de producción y de dev.
 - Texto de los botones del header: «Ver más» pasó a «Mi cuenta» (UX, 2026-11-11).
 - Pestaña «Masivo»: Medium 16 (UX, 2026-11-12; 2.6 · DEC-07).
